@@ -1,0 +1,22 @@
+default: &default
+  adapter: postgresql
+  pool: 5
+  timeout: 5000
+
+development:
+  adapter: postgresql
+  database: manifest_dev
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  timeout: 5000
+
+test:
+  adapter: postgresql
+  database: manifest_test
+  pool: 5
+  timeout: 5000
+
+production:
+  adapter: postgresql
+  database: manifest_prod
+  pool: 5s
+  timeout: 5000
