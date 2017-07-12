@@ -62,11 +62,11 @@
 # ])
 
 # BoatJob: boat_id:integer, job_id:integer, created_at:timestamp updated_at:timestamp
-BoatJob.destroy_all
-BoatJob.create([
-    { boat_id:1, job_id:1 },
-    { boat_id:2, job_id:3 },
-    { boat_id:3, job_id:2 },
-    { boat_id:4, job_id:5 },
-    { boat_id:5, job_id:4 }
-])
+# BoatJob.destroy_all
+# BoatJob.create([
+#     { boat_id:1, job_id:1 },
+#     { boat_id:2, job_id:3 },
+#     { boat_id:3, job_id:2 },
+#     { boat_id:4, job_id:5 },
+#     { boat_id:5, job_id:4 }
+# ])
