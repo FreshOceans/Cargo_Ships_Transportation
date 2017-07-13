@@ -4,26 +4,31 @@ class JobsController < ApplicationController
   # GET /jobs
   # GET /jobs.json
   def index
+    puts "\n******** job_index ********"
     @jobs = Job.all
   end
 
   # GET /jobs/1
   # GET /jobs/1.json
   def show
+    puts "\n******** job_show ********"
   end
 
   # GET /jobs/new
   def new
+    puts "\n******** job_new ********"
     @job = Job.new
   end
 
   # GET /jobs/1/edit
   def edit
+    puts "\n******** job_edit ********"
   end
 
   # POST /jobs
   # POST /jobs.json
   def create
+    puts "\n******** job_create ********"
     @job = Job.new(job_params)
 
     respond_to do |format|
@@ -40,6 +45,7 @@ class JobsController < ApplicationController
   # PATCH/PUT /jobs/1
   # PATCH/PUT /jobs/1.json
   def update
+    puts "\n******** job_update ********"
     respond_to do |format|
       if @job.update(job_params)
         format.html { redirect_to @job, notice: 'Job was successfully updated.' }
@@ -54,6 +60,7 @@ class JobsController < ApplicationController
   # DELETE /jobs/1
   # DELETE /jobs/1.json
   def destroy
+    puts "\n******** job_delete ********"
     @job.destroy
     respond_to do |format|
       format.html { redirect_to jobs_url, notice: 'Job was successfully destroyed.' }
@@ -69,6 +76,7 @@ class JobsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def job_params
-      params.fetch(:job, {})
+      puts "\n******** job_params ********"
+      params.require(:job).permit(:user_id, :port_origin_id, :port_destination_id, :description,  :amount_of_containers, :cost)
     end
 end

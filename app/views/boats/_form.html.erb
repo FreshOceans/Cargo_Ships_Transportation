@@ -6,8 +6,23 @@
     <div class="actions">
         <!-- name, port_id, amount_of_containers -->
         <%= label :name, "Name", class: "data-label" %>: <%= form.text_field :name, id: "name", class: "data-value" %><br />
-        <%= label :port_id, "Port", class: "data-label" %>: <%= form.text_field :port_id, id: "port", class: "data-value" %><br />
+
+        <% selected_port = nil %>
+        <% port_name_ids = [] %>
+        <% @ports.each_with_index do |port, index| %>
+            <% port_name_ids << [port.location, port.id] %>
+            <% puts "port.id: #{port.id} #{index}" %>
+            <% if port.id == @port_id %>
+                <% selected_port = index %>
+                <% puts "selected_port: #{selected_port}" %>
+            <% end %>
+        <% end %>
+
+        <% puts "port_name_ids: #{port_name_ids}.inspect" %>
+        <%= label :port_id, "Port", class: "data-label" %>: <%= form.select(:port_id, options_for_select(port_name_ids, 2), id: "port", class: "data-value" )%><br />
+
         <%= label :amount_of_containers, "Amount of containers", class: "data-label" %>: <%= form.text_field :amount_of_containers, id: "amount_of_containers", class: "data-value" %><br />
+        
         <input type="hidden" name="boat[user_id]" value="<%= @user.id %>">
         <%= form.submit "Submit", class: "submit_btn" %>
     </div>

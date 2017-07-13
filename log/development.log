@@ -4660,3 +4660,844 @@ Processing by BoatsController#new as HTML
 Completed 200 OK in 69ms (Views: 52.2ms | ActiveRecord: 4.0ms)
 
 
+  [1m[35m (1.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (5042.6ms)[0m  [1m[35mDROP DATABASE IF EXISTS "manifest_dev"[0m
+  [1m[35m (1.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (399.8ms)[0m  [1m[35mDROP DATABASE IF EXISTS "manifest_dev"[0m
+  [1m[35m (273.5ms)[0m  [1m[35mDROP DATABASE IF EXISTS "manifest_test"[0m
+  [1m[35m (8.2ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (4.7ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_try_advisory_lock(2762321471779146480);[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateUsers (20170712161125)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (17.4ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "firstname" character varying, "lastname" character varying, "email" character varying, "username" character varying, "password" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20170712161125"]]
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreatePorts (20170712161322)
+  [1m[35m (6.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (17.5ms)[0m  [1m[35mCREATE TABLE "ports" ("id" bigserial primary key, "location" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20170712161322"]]
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateBoats (20170712161557)
+  [1m[35m (6.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (21.5ms)[0m  [1m[35mCREATE TABLE "boats" ("id" bigserial primary key, "user_id" bigint, "port_id" bigint, "name" character varying, "amount_of_containers" integer, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, CONSTRAINT "fk_rails_1298c6ca90"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+, CONSTRAINT "fk_rails_37bf74d0dc"
+FOREIGN KEY ("port_id")
+  REFERENCES "ports" ("id")
+)[0m
+  [1m[35m (1.5ms)[0m  [1m[35mCREATE  INDEX  "index_boats_on_user_id" ON "boats"  ("user_id")[0m
+  [1m[35m (1.4ms)[0m  [1m[35mCREATE  INDEX  "index_boats_on_port_id" ON "boats"  ("port_id")[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20170712161557"]]
+  [1m[35m (0.7ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateJobs (20170712162010)
+  [1m[35m (6.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (19.5ms)[0m  [1m[35mCREATE TABLE "jobs" ("id" bigserial primary key, "user_id" bigint, "port_origin_id" bigint, "port_destination_id" bigint, "description" character varying, "amount_of_containers" integer, "cost" integer, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, CONSTRAINT "fk_rails_df6238c8a6"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+)[0m
+  [1m[35m (2.2ms)[0m  [1m[35mCREATE  INDEX  "index_jobs_on_user_id" ON "jobs"  ("user_id")[0m
+  [1m[35m (1.3ms)[0m  [1m[35mCREATE  INDEX  "index_jobs_on_port_origin_id" ON "jobs"  ("port_origin_id")[0m
+  [1m[35m (1.0ms)[0m  [1m[35mCREATE  INDEX  "index_jobs_on_port_destination_id" ON "jobs"  ("port_destination_id")[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20170712162010"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateComments (20170712162053)
+  [1m[35m (6.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (20.5ms)[0m  [1m[35mCREATE TABLE "comments" ("id" bigserial primary key, "user_id" bigint, "job_id" bigint, "content" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, CONSTRAINT "fk_rails_03de2dc08c"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+, CONSTRAINT "fk_rails_b446a12bbc"
+FOREIGN KEY ("job_id")
+  REFERENCES "jobs" ("id")
+)[0m
+  [1m[35m (1.2ms)[0m  [1m[35mCREATE  INDEX  "index_comments_on_user_id" ON "comments"  ("user_id")[0m
+  [1m[35m (1.2ms)[0m  [1m[35mCREATE  INDEX  "index_comments_on_job_id" ON "comments"  ("job_id")[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20170712162053"]]
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateBoatJobs (20170712162144)
+  [1m[35m (6.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (13.1ms)[0m  [1m[35mCREATE TABLE "boat_jobs" ("id" bigserial primary key, "boat_id" bigint, "job_id" bigint, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, CONSTRAINT "fk_rails_95bf50703b"
+FOREIGN KEY ("boat_id")
+  REFERENCES "boats" ("id")
+, CONSTRAINT "fk_rails_683027a94d"
+FOREIGN KEY ("job_id")
+  REFERENCES "jobs" ("id")
+)[0m
+  [1m[35m (1.4ms)[0m  [1m[35mCREATE  INDEX  "index_boat_jobs_on_boat_id" ON "boat_jobs"  ("boat_id")[0m
+  [1m[35m (1.1ms)[0m  [1m[35mCREATE  INDEX  "index_boat_jobs_on_job_id" ON "boat_jobs"  ("job_id")[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20170712162144"]]
+  [1m[35m (1.8ms)[0m  [1m[35mCOMMIT[0m
+Migrating to AddDeviseToUsers (20170712184620)
+  [1m[35m (5.7ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (19.7ms)[0m  [1m[35mALTER TABLE "users" ADD "encrypted_password" character varying DEFAULT '' NOT NULL[0m
+  [1m[35m (0.5ms)[0m  [1m[35mALTER TABLE "users" ADD "reset_password_token" character varying[0m
+  [1m[35m (0.4ms)[0m  [1m[35mALTER TABLE "users" ADD "reset_password_sent_at" timestamp[0m
+  [1m[35m (0.4ms)[0m  [1m[35mALTER TABLE "users" ADD "remember_created_at" timestamp[0m
+  [1m[35m (7.1ms)[0m  [1m[35mALTER TABLE "users" ADD "sign_in_count" integer DEFAULT 0 NOT NULL[0m
+  [1m[35m (0.4ms)[0m  [1m[35mALTER TABLE "users" ADD "current_sign_in_at" timestamp[0m
+  [1m[35m (0.4ms)[0m  [1m[35mALTER TABLE "users" ADD "last_sign_in_at" timestamp[0m
+  [1m[35m (0.4ms)[0m  [1m[35mALTER TABLE "users" ADD "current_sign_in_ip" inet[0m
+  [1m[35m (0.4ms)[0m  [1m[35mALTER TABLE "users" ADD "last_sign_in_ip" inet[0m
+  [1m[35m (1.4ms)[0m  [1m[35mCREATE UNIQUE INDEX  "index_users_on_email" ON "users"  ("email")[0m
+  [1m[35m (1.1ms)[0m  [1m[35mCREATE UNIQUE INDEX  "index_users_on_reset_password_token" ON "users"  ("reset_password_token")[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20170712184620"]]
+  [1m[35m (1.8ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateAdmins (20170713010601)
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (16.9ms)[0m  [1m[35mCREATE TABLE "admins" ("id" bigserial primary key, "firstname" character varying, "lastname" character varying, "email" character varying, "username" character varying, "password" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20170713010601"]]
+  [1m[35m (5.1ms)[0m  [1m[35mCOMMIT[0m
+Migrating to AddDeviseToAdmins (20170713010625)
+  [1m[35m (2.7ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (13.6ms)[0m  [1m[35mALTER TABLE "admins" ADD "encrypted_password" character varying DEFAULT '' NOT NULL[0m
+  [1m[35m (0.4ms)[0m  [1m[35mALTER TABLE "admins" ADD "reset_password_token" character varying[0m
+  [1m[35m (0.3ms)[0m  [1m[35mALTER TABLE "admins" ADD "reset_password_sent_at" timestamp[0m
+  [1m[35m (0.7ms)[0m  [1m[35mALTER TABLE "admins" ADD "remember_created_at" timestamp[0m
+  [1m[35m (9.6ms)[0m  [1m[35mALTER TABLE "admins" ADD "sign_in_count" integer DEFAULT 0 NOT NULL[0m
+  [1m[35m (0.5ms)[0m  [1m[35mALTER TABLE "admins" ADD "current_sign_in_at" timestamp[0m
+  [1m[35m (0.4ms)[0m  [1m[35mALTER TABLE "admins" ADD "last_sign_in_at" timestamp[0m
+  [1m[35m (0.3ms)[0m  [1m[35mALTER TABLE "admins" ADD "current_sign_in_ip" inet[0m
+  [1m[35m (0.3ms)[0m  [1m[35mALTER TABLE "admins" ADD "last_sign_in_ip" inet[0m
+  [1m[35m (1.6ms)[0m  [1m[35mCREATE UNIQUE INDEX  "index_admins_on_email" ON "admins"  ("email")[0m
+  [1m[35m (1.3ms)[0m  [1m[35mCREATE UNIQUE INDEX  "index_admins_on_reset_password_token" ON "admins"  ("reset_password_token")[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20170713010625"]]
+  [1m[35m (1.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2017-07-13 18:02:13.103513"], ["updated_at", "2017-07-13 18:02:13.103513"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(2762321471779146480)[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (1.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists (0.9ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "nobre@gmail.com"], ["LIMIT", 1]]
+  [1m[35mSQL (1.1ms)[0m  [1m[32mINSERT INTO "users" ("firstname", "lastname", "email", "username", "created_at", "updated_at", "encrypted_password") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["firstname", "Valeci"], ["lastname", "Nobre"], ["email", "nobre@gmail.com"], ["username", "val"], ["created_at", "2017-07-13 18:02:20.338847"], ["updated_at", "2017-07-13 18:02:20.338847"], ["encrypted_password", "$2a$11$RRkyUETOtGZa3FgWXU67Z.BIfXg7CceAwO5QEvZX9TF1QVLQ.4Z6O"]]
+  [1m[35m (6.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists (0.5ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "edo@gmail.com"], ["LIMIT", 1]]
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "users" ("firstname", "lastname", "email", "username", "created_at", "updated_at", "encrypted_password") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["firstname", "Edik"], ["lastname", "Choukhachian"], ["email", "edo@gmail.com"], ["username", "edo"], ["created_at", "2017-07-13 18:02:20.512244"], ["updated_at", "2017-07-13 18:02:20.512244"], ["encrypted_password", "$2a$11$yQkya6t3xdGPzkplm3BUPuYyL8wbKKPHzPqUbGGHPhAg7PWEli/qu"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists (0.5ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "mike@gmail.com"], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "users" ("firstname", "lastname", "email", "username", "created_at", "updated_at", "encrypted_password") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["firstname", "Michael"], ["lastname", "Perez"], ["email", "mike@gmail.com"], ["username", "freshoceans"], ["created_at", "2017-07-13 18:02:20.675391"], ["updated_at", "2017-07-13 18:02:20.675391"], ["encrypted_password", "$2a$11$BbwjE8lgLNpDHMFrPCBGZeOr6ZYOu0Z/NDHdQe9iZjc8vn07b3dOa"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists (0.5ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "mbolo@gmail.com"], ["LIMIT", 1]]
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "users" ("firstname", "lastname", "email", "username", "created_at", "updated_at", "encrypted_password") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["firstname", "Monique"], ["lastname", "Bolosan"], ["email", "mbolo@gmail.com"], ["username", "olympia"], ["created_at", "2017-07-13 18:02:20.836422"], ["updated_at", "2017-07-13 18:02:20.836422"], ["encrypted_password", "$2a$11$rR2C4tqwIl0QDpOx.rr1huh0fIzKZ2VBh9qlb/blTKEzaJYxcS2eu"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists (0.5ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "nyu@gmail.com"], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "users" ("firstname", "lastname", "email", "username", "created_at", "updated_at", "encrypted_password") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["firstname", "Natasha"], ["lastname", "Perez"], ["email", "nyu@gmail.com"], ["username", "nyu"], ["created_at", "2017-07-13 18:02:20.998882"], ["updated_at", "2017-07-13 18:02:20.998882"], ["encrypted_password", "$2a$11$C8M5VlN7ZC6fbYvJqy6OWe.SCOp0mn4DYNeMfVKRosK2rJlG8d06e"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mPort Load (0.8ms)[0m  [1m[34mSELECT "ports".* FROM "ports"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.8ms)[0m  [1m[32mINSERT INTO "ports" ("location", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["location", "Busan, South Korea"], ["created_at", "2017-07-13 18:02:21.023586"], ["updated_at", "2017-07-13 18:02:21.023586"]]
+  [1m[35m (4.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "ports" ("location", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["location", "Los Angeles, U.S.A."], ["created_at", "2017-07-13 18:02:21.030817"], ["updated_at", "2017-07-13 18:02:21.030817"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "ports" ("location", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["location", "Jebel Ali, Dubai, United Arab Emirates"], ["created_at", "2017-07-13 18:02:21.033203"], ["updated_at", "2017-07-13 18:02:21.033203"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "ports" ("location", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["location", "Antwerp, Belgium"], ["created_at", "2017-07-13 18:02:21.035145"], ["updated_at", "2017-07-13 18:02:21.035145"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "ports" ("location", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["location", "Hamburg, Germany"], ["created_at", "2017-07-13 18:02:21.037136"], ["updated_at", "2017-07-13 18:02:21.037136"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "ports" ("location", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["location", "Shanghai, China"], ["created_at", "2017-07-13 18:02:21.038981"], ["updated_at", "2017-07-13 18:02:21.038981"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "ports" ("location", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["location", "New York-New Jersey, U.S.A."], ["created_at", "2017-07-13 18:02:21.040843"], ["updated_at", "2017-07-13 18:02:21.040843"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "ports" ("location", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["location", "Felixstowe, U.K."], ["created_at", "2017-07-13 18:02:21.042503"], ["updated_at", "2017-07-13 18:02:21.042503"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "ports" ("location", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["location", "Santos, Brazil"], ["created_at", "2017-07-13 18:02:21.044206"], ["updated_at", "2017-07-13 18:02:21.044206"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "ports" ("location", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["location", "Balboa, Panama"], ["created_at", "2017-07-13 18:02:21.045863"], ["updated_at", "2017-07-13 18:02:21.045863"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mBoat Load (0.9ms)[0m  [1m[34mSELECT "boats".* FROM "boats"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mPort Load (0.3ms)[0m  [1m[34mSELECT  "ports".* FROM "ports" WHERE "ports"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mBoat Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "boats" WHERE "boats"."name" = $1 LIMIT $2[0m  [["name", "Yasuo"], ["LIMIT", 1]]
+  [1m[35mSQL (1.3ms)[0m  [1m[32mINSERT INTO "boats" ("user_id", "port_id", "name", "amount_of_containers", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["user_id", 1], ["port_id", 1], ["name", "Yasuo"], ["amount_of_containers", 10], ["created_at", "2017-07-13 18:02:21.096985"], ["updated_at", "2017-07-13 18:02:21.096985"]]
+  [1m[35m (6.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mPort Load (0.2ms)[0m  [1m[34mSELECT  "ports".* FROM "ports" WHERE "ports"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mBoat Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "boats" WHERE "boats"."name" = $1 LIMIT $2[0m  [["name", "Kha'zix"], ["LIMIT", 1]]
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "boats" ("user_id", "port_id", "name", "amount_of_containers", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["user_id", 2], ["port_id", 2], ["name", "Kha'zix"], ["amount_of_containers", 25], ["created_at", "2017-07-13 18:02:21.111137"], ["updated_at", "2017-07-13 18:02:21.111137"]]
+  [1m[35m (4.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mPort Load (0.3ms)[0m  [1m[34mSELECT  "ports".* FROM "ports" WHERE "ports"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mBoat Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "boats" WHERE "boats"."name" = $1 LIMIT $2[0m  [["name", "Ezreal"], ["LIMIT", 1]]
+  [1m[35mSQL (0.8ms)[0m  [1m[32mINSERT INTO "boats" ("user_id", "port_id", "name", "amount_of_containers", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["user_id", 3], ["port_id", 3], ["name", "Ezreal"], ["amount_of_containers", 7], ["created_at", "2017-07-13 18:02:21.123554"], ["updated_at", "2017-07-13 18:02:21.123554"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mPort Load (0.3ms)[0m  [1m[34mSELECT  "ports".* FROM "ports" WHERE "ports"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mBoat Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "boats" WHERE "boats"."name" = $1 LIMIT $2[0m  [["name", "Lee Sin"], ["LIMIT", 1]]
+  [1m[35mSQL (0.8ms)[0m  [1m[32mINSERT INTO "boats" ("user_id", "port_id", "name", "amount_of_containers", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["user_id", 4], ["port_id", 4], ["name", "Lee Sin"], ["amount_of_containers", 14], ["created_at", "2017-07-13 18:02:21.131618"], ["updated_at", "2017-07-13 18:02:21.131618"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mPort Load (0.3ms)[0m  [1m[34mSELECT  "ports".* FROM "ports" WHERE "ports"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mBoat Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "boats" WHERE "boats"."name" = $1 LIMIT $2[0m  [["name", "Lucian"], ["LIMIT", 1]]
+  [1m[35mSQL (0.7ms)[0m  [1m[32mINSERT INTO "boats" ("user_id", "port_id", "name", "amount_of_containers", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["user_id", 5], ["port_id", 5], ["name", "Lucian"], ["amount_of_containers", 62], ["created_at", "2017-07-13 18:02:21.139344"], ["updated_at", "2017-07-13 18:02:21.139344"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mJob Load (1.1ms)[0m  [1m[34mSELECT "jobs".* FROM "jobs"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mPort Load (0.3ms)[0m  [1m[34mSELECT  "ports".* FROM "ports" WHERE "ports"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mPort Load (0.1ms)[0m  [1m[34mSELECT  "ports".* FROM "ports" WHERE "ports"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[35mSQL (1.1ms)[0m  [1m[32mINSERT INTO "jobs" ("user_id", "port_origin_id", "port_destination_id", "description", "amount_of_containers", "cost", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["user_id", 1], ["port_origin_id", 1], ["port_destination_id", 3], ["description", "Silicon Chips"], ["amount_of_containers", 10], ["cost", 1000], ["created_at", "2017-07-13 18:02:21.183643"], ["updated_at", "2017-07-13 18:02:21.183643"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mPort Load (0.2ms)[0m  [1m[34mSELECT  "ports".* FROM "ports" WHERE "ports"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mPort Load (0.1ms)[0m  [1m[34mSELECT  "ports".* FROM "ports" WHERE "ports"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "jobs" ("user_id", "port_origin_id", "port_destination_id", "description", "amount_of_containers", "cost", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["user_id", 2], ["port_origin_id", 2], ["port_destination_id", 4], ["description", "Coffee"], ["amount_of_containers", 25], ["cost", 2500], ["created_at", "2017-07-13 18:02:21.190975"], ["updated_at", "2017-07-13 18:02:21.190975"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mPort Load (0.2ms)[0m  [1m[34mSELECT  "ports".* FROM "ports" WHERE "ports"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mPort Load (0.2ms)[0m  [1m[34mSELECT  "ports".* FROM "ports" WHERE "ports"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "jobs" ("user_id", "port_origin_id", "port_destination_id", "description", "amount_of_containers", "cost", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["user_id", 3], ["port_origin_id", 3], ["port_destination_id", 5], ["description", "Tea"], ["amount_of_containers", 7], ["cost", 700], ["created_at", "2017-07-13 18:02:21.197543"], ["updated_at", "2017-07-13 18:02:21.197543"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mPort Load (0.1ms)[0m  [1m[34mSELECT  "ports".* FROM "ports" WHERE "ports"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mPort Load (0.1ms)[0m  [1m[34mSELECT  "ports".* FROM "ports" WHERE "ports"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "jobs" ("user_id", "port_origin_id", "port_destination_id", "description", "amount_of_containers", "cost", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["user_id", 4], ["port_origin_id", 4], ["port_destination_id", 2], ["description", "Bottled Water"], ["amount_of_containers", 14], ["cost", 1400], ["created_at", "2017-07-13 18:02:21.203792"], ["updated_at", "2017-07-13 18:02:21.203792"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mPort Load (0.2ms)[0m  [1m[34mSELECT  "ports".* FROM "ports" WHERE "ports"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mPort Load (0.1ms)[0m  [1m[34mSELECT  "ports".* FROM "ports" WHERE "ports"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "jobs" ("user_id", "port_origin_id", "port_destination_id", "description", "amount_of_containers", "cost", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["user_id", 5], ["port_origin_id", 5], ["port_destination_id", 1], ["description", "Mangos"], ["amount_of_containers", 62], ["cost", 6200], ["created_at", "2017-07-13 18:02:21.210728"], ["updated_at", "2017-07-13 18:02:21.210728"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mComment Load (0.9ms)[0m  [1m[34mSELECT "comments".* FROM "comments"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mJob Load (0.3ms)[0m  [1m[34mSELECT  "jobs".* FROM "jobs" WHERE "jobs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (1.2ms)[0m  [1m[32mINSERT INTO "comments" ("user_id", "job_id", "content", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["user_id", 2], ["job_id", 1], ["content", "Vestibulum tincidunt malesuada tellus."], ["created_at", "2017-07-13 18:02:21.245160"], ["updated_at", "2017-07-13 18:02:21.245160"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mJob Load (0.3ms)[0m  [1m[34mSELECT  "jobs".* FROM "jobs" WHERE "jobs"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "comments" ("user_id", "job_id", "content", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["user_id", 3], ["job_id", 2], ["content", "Morbi in dui quis est"], ["created_at", "2017-07-13 18:02:21.252126"], ["updated_at", "2017-07-13 18:02:21.252126"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mJob Load (0.5ms)[0m  [1m[34mSELECT  "jobs".* FROM "jobs" WHERE "jobs"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[35mSQL (0.8ms)[0m  [1m[32mINSERT INTO "comments" ("user_id", "job_id", "content", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["user_id", 3], ["job_id", 3], ["content", "Sed aliquet risus a tortor."], ["created_at", "2017-07-13 18:02:21.266084"], ["updated_at", "2017-07-13 18:02:21.266084"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mJob Load (0.3ms)[0m  [1m[34mSELECT  "jobs".* FROM "jobs" WHERE "jobs"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "comments" ("user_id", "job_id", "content", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["user_id", 4], ["job_id", 4], ["content", "Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos."], ["created_at", "2017-07-13 18:02:21.271545"], ["updated_at", "2017-07-13 18:02:21.271545"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mJob Load (0.4ms)[0m  [1m[34mSELECT  "jobs".* FROM "jobs" WHERE "jobs"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "comments" ("user_id", "job_id", "content", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["user_id", 1], ["job_id", 5], ["content", "Fusce ac turpis quis ligula lacinia aliquet."], ["created_at", "2017-07-13 18:02:21.276695"], ["updated_at", "2017-07-13 18:02:21.276695"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mJob Load (0.3ms)[0m  [1m[34mSELECT  "jobs".* FROM "jobs" WHERE "jobs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "comments" ("user_id", "job_id", "content", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["user_id", 2], ["job_id", 1], ["content", "In vel mi sit amet augue congue elementum."], ["created_at", "2017-07-13 18:02:21.281630"], ["updated_at", "2017-07-13 18:02:21.281630"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mJob Load (0.2ms)[0m  [1m[34mSELECT  "jobs".* FROM "jobs" WHERE "jobs"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "comments" ("user_id", "job_id", "content", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["user_id", 3], ["job_id", 2], ["content", "Sed cursus ante dapibus diam."], ["created_at", "2017-07-13 18:02:21.286347"], ["updated_at", "2017-07-13 18:02:21.286347"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mJob Load (0.2ms)[0m  [1m[34mSELECT  "jobs".* FROM "jobs" WHERE "jobs"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "comments" ("user_id", "job_id", "content", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["user_id", 4], ["job_id", 3], ["content", "Ut orci risus, accumsan porttitor, cursus quis, aliquet eget, justo."], ["created_at", "2017-07-13 18:02:21.291821"], ["updated_at", "2017-07-13 18:02:21.291821"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mJob Load (0.2ms)[0m  [1m[34mSELECT  "jobs".* FROM "jobs" WHERE "jobs"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "comments" ("user_id", "job_id", "content", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["user_id", 1], ["job_id", 4], ["content", "Integer id quam."], ["created_at", "2017-07-13 18:02:21.296973"], ["updated_at", "2017-07-13 18:02:21.296973"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mJob Load (0.2ms)[0m  [1m[34mSELECT  "jobs".* FROM "jobs" WHERE "jobs"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "comments" ("user_id", "job_id", "content", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["user_id", 2], ["job_id", 5], ["content", "Proin sodales libero eget ante. Nulla quam. Aenean laoreet. Vestibulum nisi lectus, commodo ac, facilisis ac, ultricies eu, pede."], ["created_at", "2017-07-13 18:02:21.301642"], ["updated_at", "2017-07-13 18:02:21.301642"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mBoatJob Load (0.9ms)[0m  [1m[34mSELECT "boat_jobs".* FROM "boat_jobs"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mBoat Load (0.3ms)[0m  [1m[34mSELECT  "boats".* FROM "boats" WHERE "boats"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mJob Load (0.3ms)[0m  [1m[34mSELECT  "jobs".* FROM "jobs" WHERE "jobs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (1.3ms)[0m  [1m[32mINSERT INTO "boat_jobs" ("boat_id", "job_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["boat_id", 1], ["job_id", 1], ["created_at", "2017-07-13 18:02:21.333799"], ["updated_at", "2017-07-13 18:02:21.333799"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mBoat Load (0.4ms)[0m  [1m[34mSELECT  "boats".* FROM "boats" WHERE "boats"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mJob Load (0.2ms)[0m  [1m[34mSELECT  "jobs".* FROM "jobs" WHERE "jobs"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[35mSQL (0.8ms)[0m  [1m[32mINSERT INTO "boat_jobs" ("boat_id", "job_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["boat_id", 2], ["job_id", 3], ["created_at", "2017-07-13 18:02:21.340249"], ["updated_at", "2017-07-13 18:02:21.340249"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mBoat Load (0.3ms)[0m  [1m[34mSELECT  "boats".* FROM "boats" WHERE "boats"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mJob Load (0.2ms)[0m  [1m[34mSELECT  "jobs".* FROM "jobs" WHERE "jobs"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35mSQL (0.7ms)[0m  [1m[32mINSERT INTO "boat_jobs" ("boat_id", "job_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["boat_id", 3], ["job_id", 2], ["created_at", "2017-07-13 18:02:21.345623"], ["updated_at", "2017-07-13 18:02:21.345623"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+Started GET "/feed" for 127.0.0.1 at 2017-07-13 14:07:51 -0400
+  [1m[35m (1.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#feed as HTML
+  [1m[36mUser Load (1.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+Completed 401 Unauthorized in 90ms (ActiveRecord: 11.8ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2017-07-13 14:07:52 -0400
+Processing by Users::SessionsController#new as HTML
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (1.6ms)
+  Rendered devise/sessions/new.html.erb within layouts/application (40.4ms)
+  Rendered users/_menu.html.erb (2.1ms)
+Completed 200 OK in 455ms (Views: 451.5ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/users/sign_in" for 127.0.0.1 at 2017-07-13 14:08:00 -0400
+Processing by Users::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"wWxn1F+Rs3YhNMe0fnusBTWg9FpT8ZSbjbiYSi86SE1jf+6vglv2vngQsunz19brphCBor8zkovciJ902Rf/YQ==", "user"=>{"username"=>"val", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  [1m[36mUser Load (1.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."username" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["username", "val"], ["LIMIT", 1]]
+  [1m[35m (3.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.5ms)[0m  [1m[33mUPDATE "users" SET "current_sign_in_at" = $1, "last_sign_in_at" = $2, "current_sign_in_ip" = $3, "last_sign_in_ip" = $4, "sign_in_count" = $5, "updated_at" = $6 WHERE "users"."id" = $7[0m  [["current_sign_in_at", "2017-07-13 18:08:00.460019"], ["last_sign_in_at", "2017-07-13 18:08:00.460019"], ["current_sign_in_ip", "127.0.0.1/32"], ["last_sign_in_ip", "127.0.0.1/32"], ["sign_in_count", 1], ["updated_at", "2017-07-13 18:08:00.465651"], ["id", 1]]
+  [1m[35m (6.6ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/feed
+Completed 302 Found in 232ms (ActiveRecord: 13.3ms)
+
+
+Started GET "/feed" for 127.0.0.1 at 2017-07-13 14:08:00 -0400
+Processing by UsersController#feed as HTML
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering users/feed.html.erb within layouts/application
+  Rendered users/feed.html.erb within layouts/application (0.9ms)
+Completed 500 Internal Server Error in 23ms (ActiveRecord: 1.8ms)
+
+
+  
+SyntaxError (/Users/Nobre/Desktop/Homework/Ruby/Rails/Cargo_Ships_Transportation/app/views/users/feed.html.erb:9: syntax error, unexpected keyword_ensure, expecting keyword_end
+          ensure
+                ^
+/Users/Nobre/Desktop/Homework/Ruby/Rails/Cargo_Ships_Transportation/app/views/users/feed.html.erb:11: syntax error, unexpected end-of-input, expecting keyword_end):
+  
+app/views/users/feed.html.erb:9: syntax error, unexpected keyword_ensure, expecting keyword_end
+app/views/users/feed.html.erb:11: syntax error, unexpected end-of-input, expecting keyword_end
+Started GET "/feed" for 127.0.0.1 at 2017-07-13 14:08:23 -0400
+Processing by UsersController#feed as HTML
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering users/feed.html.erb within layouts/application
+  Rendered users/feed.html.erb within layouts/application (1.1ms)
+Completed 500 Internal Server Error in 17ms (ActiveRecord: 1.0ms)
+
+
+  
+SyntaxError (/Users/Nobre/Desktop/Homework/Ruby/Rails/Cargo_Ships_Transportation/app/views/users/feed.html.erb:9: syntax error, unexpected keyword_ensure, expecting keyword_end
+          ensure
+                ^
+/Users/Nobre/Desktop/Homework/Ruby/Rails/Cargo_Ships_Transportation/app/views/users/feed.html.erb:11: syntax error, unexpected end-of-input, expecting keyword_end):
+  
+app/views/users/feed.html.erb:9: syntax error, unexpected keyword_ensure, expecting keyword_end
+app/views/users/feed.html.erb:11: syntax error, unexpected end-of-input, expecting keyword_end
+Started GET "/" for 127.0.0.1 at 2017-07-13 14:08:26 -0400
+Processing by UsersController#home as HTML
+  Rendering users/home.html.erb within layouts/application
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered users/home.html.erb within layouts/application (3.7ms)
+  Rendered users/_menu.html.erb (1.8ms)
+Completed 200 OK in 40ms (Views: 34.4ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/users/1/boats" for 127.0.0.1 at 2017-07-13 14:08:29 -0400
+Processing by BoatsController#index as HTML
+  Parameters: {"user_id"=>"1"}
+  [1m[36mUser Load (7.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering boats/index.html.erb within layouts/application
+  [1m[36mBoat Load (2.9ms)[0m  [1m[34mSELECT "boats".* FROM "boats"[0m
+  Rendered boats/index.html.erb within layouts/application (25.8ms)
+  Rendered users/_menu.html.erb (2.2ms)
+Completed 200 OK in 102ms (Views: 48.9ms | ActiveRecord: 18.6ms)
+
+
+Started GET "/users/1/boats/new" for 127.0.0.1 at 2017-07-13 14:08:35 -0400
+Processing by BoatsController#new as HTML
+  Parameters: {"user_id"=>"1"}
+  [1m[36mUser Load (1.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (1.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mPort Load (0.5ms)[0m  [1m[34mSELECT  "ports".* FROM "ports" WHERE "ports"."id" = $1 LIMIT $2[0m  [["id", nil], ["LIMIT", 1]]
+Completed 404 Not Found in 59ms (ActiveRecord: 11.5ms)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find Port with 'id'=):
+  
+app/controllers/boats_controller.rb:26:in `new'
+Started GET "/users/1/boats/new" for 127.0.0.1 at 2017-07-13 14:11:18 -0400
+Processing by BoatsController#new as HTML
+  Parameters: {"user_id"=>"1"}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mPort Load (0.6ms)[0m  [1m[34mSELECT  "ports".* FROM "ports" LIMIT $1[0m  [["LIMIT", 11]]
+  Rendering boats/new.html.erb within layouts/application
+  Rendered boats/_form.html.erb (3.8ms)
+  Rendered boats/new.html.erb within layouts/application (6.9ms)
+  Rendered users/_menu.html.erb (1.6ms)
+Completed 200 OK in 165ms (Views: 37.0ms | ActiveRecord: 20.4ms)
+
+
+Started GET "/feed" for 127.0.0.1 at 2017-07-13 14:11:20 -0400
+Processing by UsersController#feed as HTML
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering users/feed.html.erb within layouts/application
+  Rendered users/feed.html.erb within layouts/application (0.9ms)
+Completed 500 Internal Server Error in 41ms (ActiveRecord: 1.2ms)
+
+
+  
+SyntaxError (/Users/Nobre/Desktop/Homework/Ruby/Rails/Cargo_Ships_Transportation/app/views/users/feed.html.erb:9: syntax error, unexpected keyword_ensure, expecting keyword_end
+          ensure
+                ^
+/Users/Nobre/Desktop/Homework/Ruby/Rails/Cargo_Ships_Transportation/app/views/users/feed.html.erb:11: syntax error, unexpected end-of-input, expecting keyword_end):
+  
+app/views/users/feed.html.erb:9: syntax error, unexpected keyword_ensure, expecting keyword_end
+app/views/users/feed.html.erb:11: syntax error, unexpected end-of-input, expecting keyword_end
+Started GET "/feed" for 127.0.0.1 at 2017-07-13 14:11:57 -0400
+Processing by UsersController#feed as HTML
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering users/feed.html.erb within layouts/application
+  Rendered users/feed.html.erb within layouts/application (0.5ms)
+  Rendered users/_menu.html.erb (1.7ms)
+Completed 200 OK in 38ms (Views: 30.0ms | ActiveRecord: 1.4ms)
+
+
+Started GET "/feed" for 127.0.0.1 at 2017-07-13 14:12:13 -0400
+Processing by UsersController#feed as HTML
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering users/feed.html.erb within layouts/application
+  Rendered users/feed.html.erb within layouts/application (0.9ms)
+Completed 500 Internal Server Error in 17ms (ActiveRecord: 1.0ms)
+
+
+  
+SyntaxError (/Users/Nobre/Desktop/Homework/Ruby/Rails/Cargo_Ships_Transportation/app/views/users/feed.html.erb:9: syntax error, unexpected keyword_ensure, expecting keyword_end
+          ensure
+                ^
+/Users/Nobre/Desktop/Homework/Ruby/Rails/Cargo_Ships_Transportation/app/views/users/feed.html.erb:11: syntax error, unexpected end-of-input, expecting keyword_end):
+  
+app/views/users/feed.html.erb:9: syntax error, unexpected keyword_ensure, expecting keyword_end
+app/views/users/feed.html.erb:11: syntax error, unexpected end-of-input, expecting keyword_end
+Started GET "/feed" for 127.0.0.1 at 2017-07-13 14:12:34 -0400
+Processing by UsersController#feed as HTML
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering users/feed.html.erb within layouts/application
+  Rendered users/feed.html.erb within layouts/application (0.7ms)
+  Rendered users/_menu.html.erb (1.5ms)
+Completed 200 OK in 35ms (Views: 27.5ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/users/1/boats" for 127.0.0.1 at 2017-07-13 14:12:44 -0400
+Processing by BoatsController#index as HTML
+  Parameters: {"user_id"=>"1"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering boats/index.html.erb within layouts/application
+  [1m[36mBoat Load (0.5ms)[0m  [1m[34mSELECT "boats".* FROM "boats"[0m
+  Rendered boats/index.html.erb within layouts/application (17.0ms)
+  Rendered users/_menu.html.erb (1.5ms)
+Completed 200 OK in 93ms (Views: 39.7ms | ActiveRecord: 13.7ms)
+
+
+Started GET "/users/1/jobs" for 127.0.0.1 at 2017-07-13 14:12:45 -0400
+Processing by JobsController#index as HTML
+  Parameters: {"user_id"=>"1"}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering jobs/index.html.erb within layouts/application
+  [1m[36mJob Load (1.1ms)[0m  [1m[34mSELECT "jobs".* FROM "jobs"[0m
+  Rendered jobs/index.html.erb within layouts/application (199.6ms)
+Completed 500 Internal Server Error in 250ms (ActiveRecord: 7.3ms)
+
+
+  
+ActionView::Template::Error (undefined method `job_path' for #<#<Class:0x007fe8d5f0e3d8>:0x007fe8d5f05a58>):
+    12:   <tbody>
+    13:     <% @jobs.each do |job| %>
+    14:       <tr>
+    15:         <td><%= link_to 'Show', job %></td>
+    16:         <td><%= link_to 'Edit', edit_job_path(job) %></td>
+    17:         <td><%= link_to 'Destroy', job, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    18:       </tr>
+  
+app/views/jobs/index.html.erb:15:in `block in _app_views_jobs_index_html_erb__3774951267934267276_70318999239820'
+app/views/jobs/index.html.erb:13:in `_app_views_jobs_index_html_erb__3774951267934267276_70318999239820'
+Started GET "/users/1/boats" for 127.0.0.1 at 2017-07-13 14:12:47 -0400
+Processing by BoatsController#index as HTML
+  Parameters: {"user_id"=>"1"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering boats/index.html.erb within layouts/application
+  [1m[36mBoat Load (0.7ms)[0m  [1m[34mSELECT "boats".* FROM "boats"[0m
+  Rendered boats/index.html.erb within layouts/application (3.3ms)
+  Rendered users/_menu.html.erb (1.6ms)
+Completed 200 OK in 38ms (Views: 31.8ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/users/1" for 127.0.0.1 at 2017-07-13 14:12:49 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (2.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (1.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (1.5ms)
+  Rendered users/_menu.html.erb (1.8ms)
+Completed 200 OK in 58ms (Views: 37.3ms | ActiveRecord: 3.8ms)
+
+
+Started GET "/users/1/boats" for 127.0.0.1 at 2017-07-13 14:12:51 -0400
+Processing by BoatsController#index as HTML
+  Parameters: {"user_id"=>"1"}
+  [1m[36mUser Load (1.8ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering boats/index.html.erb within layouts/application
+  [1m[36mBoat Load (1.1ms)[0m  [1m[34mSELECT "boats".* FROM "boats"[0m
+  Rendered boats/index.html.erb within layouts/application (5.1ms)
+  Rendered users/_menu.html.erb (1.5ms)
+Completed 200 OK in 60ms (Views: 50.5ms | ActiveRecord: 2.9ms)
+
+
+Started GET "/users/1/boats/new" for 127.0.0.1 at 2017-07-13 14:13:00 -0400
+Processing by BoatsController#new as HTML
+  Parameters: {"user_id"=>"1"}
+  [1m[36mUser Load (1.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mPort Load (0.8ms)[0m  [1m[34mSELECT  "ports".* FROM "ports" LIMIT $1[0m  [["LIMIT", 11]]
+  Rendering boats/new.html.erb within layouts/application
+  Rendered boats/_form.html.erb (3.8ms)
+  Rendered boats/new.html.erb within layouts/application (6.8ms)
+  Rendered users/_menu.html.erb (1.7ms)
+Completed 200 OK in 81ms (Views: 36.3ms | ActiveRecord: 8.5ms)
+
+
+Started POST "/users/1/boats" for 127.0.0.1 at 2017-07-13 14:14:23 -0400
+Processing by BoatsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"l/6ePTYfuXHongrnMSCQXrcO4ZvsDaxsTVz5c7N6+Ocdc834y3eqgPNmkvSwVc1LMP9KB6YYaJmv1bp8EQYzGQ==", "boat"=>{"name"=>"Garen", "port_id"=>"6", "amount_of_containers"=>"22", "user_id"=>"1"}, "commit"=>"Submit", "user_id"=>"1"}
+  [1m[36mUser Load (3.9ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (6.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mPort Load (0.4ms)[0m  [1m[34mSELECT  "ports".* FROM "ports" WHERE "ports"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  [1m[36mBoat Exists (0.6ms)[0m  [1m[34mSELECT  1 AS one FROM "boats" WHERE "boats"."name" = $1 LIMIT $2[0m  [["name", "Garen"], ["LIMIT", 1]]
+  [1m[35mSQL (1.2ms)[0m  [1m[32mINSERT INTO "boats" ("user_id", "port_id", "name", "amount_of_containers", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["user_id", 1], ["port_id", 6], ["name", "Garen"], ["amount_of_containers", 22], ["created_at", "2017-07-13 18:14:23.671323"], ["updated_at", "2017-07-13 18:14:23.671323"]]
+  [1m[35m (6.0ms)[0m  [1m[35mCOMMIT[0m
+Redirected to 
+Completed 500 Internal Server Error in 376ms (ActiveRecord: 18.7ms)
+
+
+  
+NoMethodError (undefined method `boat_url' for #<BoatsController:0x007fe8d5bca118>):
+  
+app/controllers/boats_controller.rb:50:in `block (2 levels) in create'
+app/controllers/boats_controller.rb:48:in `create'
+Started POST "/users/1/boats" for 127.0.0.1 at 2017-07-13 14:21:42 -0400
+Processing by BoatsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"l/6ePTYfuXHongrnMSCQXrcO4ZvsDaxsTVz5c7N6+Ocdc834y3eqgPNmkvSwVc1LMP9KB6YYaJmv1bp8EQYzGQ==", "boat"=>{"name"=>"Garen", "port_id"=>"6", "amount_of_containers"=>"22", "user_id"=>"1"}, "commit"=>"Submit", "user_id"=>"1"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mPort Load (0.3ms)[0m  [1m[34mSELECT  "ports".* FROM "ports" WHERE "ports"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  [1m[36mBoat Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "boats" WHERE "boats"."name" = $1 LIMIT $2[0m  [["name", "Garen"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+Redirected to 
+Completed 500 Internal Server Error in 367ms (ActiveRecord: 20.4ms)
+
+
+  
+NoMethodError (undefined method `boats_url' for #<BoatsController:0x007fe8d952dd60>
+Did you mean?  ports_url):
+  
+app/controllers/boats_controller.rb:53:in `block (2 levels) in create'
+app/controllers/boats_controller.rb:48:in `create'
+Started POST "/users/1/boats" for 127.0.0.1 at 2017-07-13 14:22:40 -0400
+Processing by BoatsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"l/6ePTYfuXHongrnMSCQXrcO4ZvsDaxsTVz5c7N6+Ocdc834y3eqgPNmkvSwVc1LMP9KB6YYaJmv1bp8EQYzGQ==", "boat"=>{"name"=>"Garen", "port_id"=>"6", "amount_of_containers"=>"22", "user_id"=>"1"}, "commit"=>"Submit", "user_id"=>"1"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mPort Load (0.3ms)[0m  [1m[34mSELECT  "ports".* FROM "ports" WHERE "ports"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  [1m[36mBoat Exists (0.5ms)[0m  [1m[34mSELECT  1 AS one FROM "boats" WHERE "boats"."name" = $1 LIMIT $2[0m  [["name", "Garen"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+Redirected to http://localhost:3000/users/1/boats/new
+Completed 302 Found in 95ms (ActiveRecord: 20.6ms)
+
+
+Started GET "/users/1/boats/new" for 127.0.0.1 at 2017-07-13 14:22:40 -0400
+Processing by BoatsController#new as HTML
+  Parameters: {"user_id"=>"1"}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mPort Load (0.3ms)[0m  [1m[34mSELECT  "ports".* FROM "ports" LIMIT $1[0m  [["LIMIT", 11]]
+  Rendering boats/new.html.erb within layouts/application
+  Rendered boats/_form.html.erb (3.3ms)
+  Rendered boats/new.html.erb within layouts/application (6.2ms)
+  Rendered users/_menu.html.erb (1.8ms)
+Completed 200 OK in 51ms (Views: 41.0ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/users/1/boats" for 127.0.0.1 at 2017-07-13 14:22:46 -0400
+Processing by BoatsController#index as HTML
+  Parameters: {"user_id"=>"1"}
+  [1m[36mUser Load (2.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering boats/index.html.erb within layouts/application
+  [1m[36mBoat Load (0.5ms)[0m  [1m[34mSELECT "boats".* FROM "boats"[0m
+  Rendered boats/index.html.erb within layouts/application (3.1ms)
+  Rendered users/_menu.html.erb (1.8ms)
+Completed 200 OK in 78ms (Views: 62.5ms | ActiveRecord: 2.6ms)
+
+
+Started GET "/users/1/boats/new" for 127.0.0.1 at 2017-07-13 14:28:57 -0400
+Processing by BoatsController#new as HTML
+  Parameters: {"user_id"=>"1"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mPort Load (0.5ms)[0m  [1m[34mSELECT  "ports".* FROM "ports" LIMIT $1[0m  [["LIMIT", 11]]
+  Rendering boats/new.html.erb within layouts/application
+  Rendered boats/_form.html.erb (7.5ms)
+  Rendered boats/new.html.erb within layouts/application (10.5ms)
+Completed 500 Internal Server Error in 116ms (ActiveRecord: 20.7ms)
+
+
+  
+ActionView::Template::Error (undefined method `each_with_index' for nil:NilClass):
+     9: 
+    10:         <% selected_port = nil %>
+    11:         <% port_name_ids = [] %>
+    12:         <% @ports.each_with_index do |port, index| %>
+    13:             <% port_name_ids << [port.name, port.id] %>
+    14:             <% puts "port.id: #{port.id} #{index}" %>
+    15:             <% if port.id == @port_id %>
+  
+app/views/boats/_form.html.erb:12:in `block in _app_views_boats__form_html_erb___3718258301426639347_70319025293820'
+app/views/boats/_form.html.erb:4:in `_app_views_boats__form_html_erb___3718258301426639347_70319025293820'
+app/views/boats/new.html.erb:3:in `_app_views_boats_new_html_erb___1074441284709404395_70319025376860'
+Started GET "/users/1/boats/new" for 127.0.0.1 at 2017-07-13 14:31:48 -0400
+Processing by BoatsController#new as HTML
+  Parameters: {"user_id"=>"1"}
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering boats/new.html.erb within layouts/application
+  [1m[36mPort Load (0.7ms)[0m  [1m[34mSELECT "ports".* FROM "ports"[0m
+  Rendered boats/_form.html.erb (27.4ms)
+  Rendered boats/new.html.erb within layouts/application (32.6ms)
+Completed 500 Internal Server Error in 139ms (ActiveRecord: 20.6ms)
+
+
+  
+ActionView::Template::Error (undefined method `name' for #<Port:0x007fe8d7a484f0>):
+    10:         <% selected_port = nil %>
+    11:         <% port_name_ids = [] %>
+    12:         <% @ports.each_with_index do |port, index| %>
+    13:             <% port_name_ids << [port.name, port.id] %>
+    14:             <% puts "port.id: #{port.id} #{index}" %>
+    15:             <% if port.id == @port_id %>
+    16:                 <% selected_port = index %>
+  
+app/views/boats/_form.html.erb:13:in `block (2 levels) in _app_views_boats__form_html_erb___3718258301426639347_70319020726060'
+app/views/boats/_form.html.erb:12:in `each_with_index'
+app/views/boats/_form.html.erb:12:in `block in _app_views_boats__form_html_erb___3718258301426639347_70319020726060'
+app/views/boats/_form.html.erb:4:in `_app_views_boats__form_html_erb___3718258301426639347_70319020726060'
+app/views/boats/new.html.erb:3:in `_app_views_boats_new_html_erb___1074441284709404395_70319014188320'
+Started GET "/users/1/boats/new" for 127.0.0.1 at 2017-07-13 14:31:50 -0400
+Processing by BoatsController#new as HTML
+  Parameters: {"user_id"=>"1"}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering boats/new.html.erb within layouts/application
+  [1m[36mPort Load (1.5ms)[0m  [1m[34mSELECT "ports".* FROM "ports"[0m
+  Rendered boats/_form.html.erb (15.9ms)
+  Rendered boats/new.html.erb within layouts/application (18.9ms)
+Completed 500 Internal Server Error in 38ms (ActiveRecord: 2.3ms)
+
+
+  
+ActionView::Template::Error (undefined method `name' for #<Port:0x007fe8d90309c0>):
+    10:         <% selected_port = nil %>
+    11:         <% port_name_ids = [] %>
+    12:         <% @ports.each_with_index do |port, index| %>
+    13:             <% port_name_ids << [port.name, port.id] %>
+    14:             <% puts "port.id: #{port.id} #{index}" %>
+    15:             <% if port.id == @port_id %>
+    16:                 <% selected_port = index %>
+  
+app/views/boats/_form.html.erb:13:in `block (2 levels) in _app_views_boats__form_html_erb___3718258301426639347_70319025096400'
+app/views/boats/_form.html.erb:12:in `each_with_index'
+app/views/boats/_form.html.erb:12:in `block in _app_views_boats__form_html_erb___3718258301426639347_70319025096400'
+app/views/boats/_form.html.erb:4:in `_app_views_boats__form_html_erb___3718258301426639347_70319025096400'
+app/views/boats/new.html.erb:3:in `_app_views_boats_new_html_erb___1074441284709404395_70319025129740'
+Started GET "/users/1/boats/new" for 127.0.0.1 at 2017-07-13 14:32:13 -0400
+Processing by BoatsController#new as HTML
+  Parameters: {"user_id"=>"1"}
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering boats/new.html.erb within layouts/application
+  [1m[36mPort Load (0.5ms)[0m  [1m[34mSELECT "ports".* FROM "ports"[0m
+  Rendered boats/_form.html.erb (7.2ms)
+  Rendered boats/new.html.erb within layouts/application (10.1ms)
+  Rendered users/_menu.html.erb (1.5ms)
+Completed 200 OK in 48ms (Views: 39.9ms | ActiveRecord: 1.5ms)
+
+
+Started POST "/users/1/boats" for 127.0.0.1 at 2017-07-13 14:32:48 -0400
+Processing by BoatsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"tSf0orraRusBNwT3vkeaSKd6y3fICz0ujqD2u9MWw7HFgOaZpQOH9xS05wB6g69xtGqvrO6gHKC/J9BKtR8a9g==", "boat"=>{"name"=>"Bache", "port_id"=>"4", "amount_of_containers"=>"66", "user_id"=>"1"}, "commit"=>"Submit", "user_id"=>"1"}
+  [1m[36mUser Load (1.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mPort Load (1.4ms)[0m  [1m[34mSELECT  "ports".* FROM "ports" WHERE "ports"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mBoat Exists (0.6ms)[0m  [1m[34mSELECT  1 AS one FROM "boats" WHERE "boats"."name" = $1 LIMIT $2[0m  [["name", "Bache"], ["LIMIT", 1]]
+  [1m[35mSQL (0.9ms)[0m  [1m[32mINSERT INTO "boats" ("user_id", "port_id", "name", "amount_of_containers", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["user_id", 1], ["port_id", 4], ["name", "Bache"], ["amount_of_containers", 66], ["created_at", "2017-07-13 18:32:48.791741"], ["updated_at", "2017-07-13 18:32:48.791741"]]
+  [1m[35m (158.5ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/feed
+Completed 302 Found in 185ms (ActiveRecord: 163.3ms)
+
+
+Started GET "/feed" for 127.0.0.1 at 2017-07-13 14:32:48 -0400
+Processing by UsersController#feed as HTML
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering users/feed.html.erb within layouts/application
+  Rendered users/feed.html.erb within layouts/application (0.7ms)
+  Rendered users/_menu.html.erb (1.7ms)
+Completed 200 OK in 40ms (Views: 33.2ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/feed" for 127.0.0.1 at 2017-07-13 14:33:00 -0400
+Processing by UsersController#feed as HTML
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering users/feed.html.erb within layouts/application
+  Rendered users/feed.html.erb within layouts/application (0.8ms)
+  Rendered users/_menu.html.erb (1.8ms)
+Completed 200 OK in 39ms (Views: 31.8ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/users/1/boats" for 127.0.0.1 at 2017-07-13 14:33:02 -0400
+Processing by BoatsController#index as HTML
+  Parameters: {"user_id"=>"1"}
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering boats/index.html.erb within layouts/application
+  [1m[36mBoat Load (0.6ms)[0m  [1m[34mSELECT "boats".* FROM "boats"[0m
+  Rendered boats/index.html.erb within layouts/application (2.8ms)
+  Rendered users/_menu.html.erb (1.5ms)
+Completed 200 OK in 57ms (Views: 40.1ms | ActiveRecord: 1.5ms)
+
+
+Started GET "/users/1/jobs" for 127.0.0.1 at 2017-07-13 14:33:05 -0400
+Processing by JobsController#index as HTML
+  Parameters: {"user_id"=>"1"}
+  [1m[36mUser Load (1.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering jobs/index.html.erb within layouts/application
+  [1m[36mJob Load (0.5ms)[0m  [1m[34mSELECT "jobs".* FROM "jobs"[0m
+  Rendered jobs/index.html.erb within layouts/application (187.3ms)
+Completed 500 Internal Server Error in 225ms (ActiveRecord: 7.3ms)
+
+
+  
+ActionView::Template::Error (undefined method `job_path' for #<#<Class:0x007fe8d5e3d350>:0x007fe8d5743a18>):
+    12:   <tbody>
+    13:     <% @jobs.each do |job| %>
+    14:       <tr>
+    15:         <td><%= link_to 'Show', job %></td>
+    16:         <td><%= link_to 'Edit', edit_job_path(job) %></td>
+    17:         <td><%= link_to 'Destroy', job, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    18:       </tr>
+  
+app/views/jobs/index.html.erb:15:in `block in _app_views_jobs_index_html_erb__3774951267934267276_70318998811900'
+app/views/jobs/index.html.erb:13:in `_app_views_jobs_index_html_erb__3774951267934267276_70318998811900'
+Started GET "/users/1/jobs" for 127.0.0.1 at 2017-07-13 14:34:17 -0400
+Processing by JobsController#index as HTML
+  Parameters: {"user_id"=>"1"}
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering jobs/index.html.erb within layouts/application
+  [1m[36mJob Load (0.6ms)[0m  [1m[34mSELECT "jobs".* FROM "jobs"[0m
+  Rendered jobs/index.html.erb within layouts/application (376.7ms)
+Completed 500 Internal Server Error in 438ms (ActiveRecord: 14.9ms)
+
+
+  
+ActionView::Template::Error (undefined local variable or method `new_job_path' for #<#<Class:0x007fe8d955ea28>:0x007fe8d955c700>
+Did you mean?  new_port_path
+               user_job_path):
+    20: 
+    21: <br>
+    22: 
+    23: <%= link_to 'New Job', new_job_path %>
+  
+app/views/jobs/index.html.erb:23:in `_app_views_jobs_index_html_erb__3774951267934267276_70319027714620'
+Started GET "/users/1/jobs" for 127.0.0.1 at 2017-07-13 14:34:49 -0400
+Processing by JobsController#index as HTML
+  Parameters: {"user_id"=>"1"}
+  [1m[36mUser Load (1.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering jobs/index.html.erb within layouts/application
+  [1m[36mJob Load (0.5ms)[0m  [1m[34mSELECT "jobs".* FROM "jobs"[0m
+  Rendered jobs/index.html.erb within layouts/application (2.7ms)
+  Rendered users/_menu.html.erb (3.3ms)
+Completed 200 OK in 52ms (Views: 44.5ms | ActiveRecord: 1.9ms)
+
+
+Started GET "/users/1/jobs" for 127.0.0.1 at 2017-07-13 14:34:50 -0400
+Processing by JobsController#index as HTML
+  Parameters: {"user_id"=>"1"}
+  [1m[36mUser Load (1.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering jobs/index.html.erb within layouts/application
+  [1m[36mJob Load (0.6ms)[0m  [1m[34mSELECT "jobs".* FROM "jobs"[0m
+  Rendered jobs/index.html.erb within layouts/application (3.2ms)
+  Rendered users/_menu.html.erb (3.1ms)
+Completed 200 OK in 55ms (Views: 46.6ms | ActiveRecord: 2.1ms)
+
+
+Started GET "/users/1/jobs" for 127.0.0.1 at 2017-07-13 14:35:00 -0400
+Processing by JobsController#index as HTML
+  Parameters: {"user_id"=>"1"}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering jobs/index.html.erb within layouts/application
+  [1m[36mJob Load (2.9ms)[0m  [1m[34mSELECT "jobs".* FROM "jobs"[0m
+  Rendered jobs/index.html.erb within layouts/application (5.2ms)
+  Rendered users/_menu.html.erb (1.7ms)
+Completed 200 OK in 55ms (Views: 40.9ms | ActiveRecord: 3.5ms)
+
+
+Started GET "/users/1/jobs" for 127.0.0.1 at 2017-07-13 14:38:35 -0400
+Processing by JobsController#index as HTML
+  Parameters: {"user_id"=>"1"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering jobs/index.html.erb within layouts/application
+  [1m[36mJob Load (0.7ms)[0m  [1m[34mSELECT "jobs".* FROM "jobs"[0m
+  Rendered jobs/index.html.erb within layouts/application (21.4ms)
+  Rendered users/_menu.html.erb (1.5ms)
+Completed 200 OK in 99ms (Views: 42.9ms | ActiveRecord: 15.7ms)
+
+

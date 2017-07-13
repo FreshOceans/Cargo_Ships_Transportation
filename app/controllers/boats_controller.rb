@@ -23,7 +23,10 @@ class BoatsController < ApplicationController
     puts "\n******** boats_new ********"
     @boat = Boat.new
     @user = User.find(current_user.id)
+    @ports = Port.all
     puts "*** @user.inspect: #{@user.inspect} ***"
+    puts "*** @port.inspect: #{@port.inspect} ***"
+
   end
 
   # GET /boats/1/edit
@@ -31,6 +34,8 @@ class BoatsController < ApplicationController
     puts "\n******** edit_boat ********"
     @user = User.find(params[:user_id])
     puts "*** @user.inspect: #{@user.inspect} ***"
+    @port = Port.find(params[:port_id])
+    puts "*** @port.inspect: #{@port.inspect} ***"
   end
 
   # POST /boats
@@ -42,10 +47,10 @@ class BoatsController < ApplicationController
 
     respond_to do |format|
       if @boat.save
-        format.html { redirect_to @boat, notice: 'Boat was successfully created.' }
+        format.html { redirect_to '/feed', notice: 'Boat was successfully created.' }
         format.json { render :show, status: :created, location: @boat }
       else
-          format.html { redirect_to @boat, notice: 'Boat update failed.'  }
+        format.html { redirect_to new_user_boat_path(current_user), notice: 'Boat was not created.'  }
         format.json { render json: @boat.errors, status: :unprocessable_entity }
       end
     end
