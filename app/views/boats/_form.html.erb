@@ -1,17 +1,15 @@
-<%= form_with(model: boat, local: true) do |form| %>
-  <% if boat.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(boat.errors.count, "error") %> prohibited this boat from being saved:</h2>
+<%= puts "*** @user: #{@user.inspect} ***" %>
+<%= puts "*** @boat: #{@boat.inspect} ***" %>
 
-      <ul>
-      <% boat.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+<%= form_for([@user, @boat]) do |form| %>
+
+    <div class="actions">
+        <!-- name, port_id, amount_of_containers -->
+        <%= label :name, "Name", class: "data-label" %>: <%= form.text_field :name, id: "name", class: "data-value" %><br />
+        <%= label :port_id, "Port", class: "data-label" %>: <%= form.text_field :port_id, id: "port", class: "data-value" %><br />
+        <%= label :amount_of_containers, "Amount of containers", class: "data-label" %>: <%= form.text_field :amount_of_containers, id: "amount_of_containers", class: "data-value" %><br />
+        <input type="hidden" name="boat[user_id]" value="<%= @user.id %>">
+        <%= form.submit "Submit", class: "submit_btn" %>
     </div>
-  <% end %>
 
-  <div class="actions">
-    <%= form.submit %>
-  </div>
 <% end %>

@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   # == GET /home
   def home
     puts "\n******** home ********"
-    # current_user = nil
+    current_user = nil
     puts "*** current_user.inspect: #{current_user.inspect} ***"
     @users = User.all
     puts "*** current_user.inspect: #{current_user.inspect} ****"
@@ -32,7 +32,7 @@ class UsersController < ApplicationController
     puts "*** @user.inspect, #{@user.inspect} ***"
     puts "*** params.inspect, #{params.inspect} ***"
     @user = User.find(params[:id])
-    puts "@user.fname: #{@user.fname}"
+    puts "@user.firstname: #{@user.firstname}"
   end
 
   # GET /users/new

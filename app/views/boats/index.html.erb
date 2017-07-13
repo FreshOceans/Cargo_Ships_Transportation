@@ -1,6 +1,8 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Boats</h1>
+<h1>Boats Index</h1>
+
+<%= link_to 'New Boat', new_user_boat_path(current_user.id) %>
 
 <table>
   <thead>
@@ -12,14 +14,12 @@
   <tbody>
     <% @boats.each do |boat| %>
       <tr>
-        <td><%= link_to 'Show', boat %></td>
-        <td><%= link_to 'Edit', edit_boat_path(boat) %></td>
-        <td><%= link_to 'Destroy', boat, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <p>Boat Name: <%=  boat.name %></p>
+          <p>Current Port: <%=  boat.port_id %></p>
+          <p>Capacity: <%=  boat.amount_of_containers %></p>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
-
-<%= link_to 'New Boat', new_boat_path %>

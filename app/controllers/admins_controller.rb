@@ -1,6 +1,5 @@
 class AdminsController < ApplicationController
   before_action :set_admin, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_admin!, except: [:home]
 
   # # == GET /home
   # def home

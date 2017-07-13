@@ -19,11 +19,16 @@ User.create([
 # Port: location:string created_at:timestamp updated_at:timestamp
 Port.destroy_all
 Port.create([
-    { location:"New York" },
-    { location:"Los Angelos" },
-    { location:"New Orleans" },
-    { location:"Boston" },
-    { location:"Seattle" }
+    { location:"Busan, South Korea" },
+    { location:"Los Angeles, U.S.A." },
+    { location:"Jebel Ali, Dubai, United Arab Emirates" },
+    { location:"Antwerp, Belgium" },
+    { location:"Hamburg, Germany" },
+    { location:"Shanghai, China"},
+    { location:"New York-New Jersey, U.S.A."},
+    { location:"Felixstowe, U.K."},
+    { location:"Santos, Brazil"},
+    { location:"Balboa, Panama"}
 ])
 
 # Boat: user_id:integer, port_id:integer, name:string, amount_of_containers:integer created_at:timestamp updated_at:timestamp

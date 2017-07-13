@@ -2,12 +2,15 @@
 
 <div id="menu">
     <% if current_user %>
-        <%= link_to 'Directory', users_path, class: "menu_item" %>
+        <!-- <%#= link_to 'Directory', users_path, class: "menu_item" %> -->
+        <%= link_to 'Feed', feed_path, class: "menu_item" %>
+        <%= link_to 'Boats', user_boats_path(current_user.id), class: "menu_item" %>
+        <%= link_to 'Jobs', user_jobs_path(current_user.id), class: "menu_item" %>
         <%= link_to 'Profile', user_path(current_user.id), class: "menu_item" %>
         <%= link_to 'Signout', destroy_user_session_path, method: :delete, class: "menu_item" %>
     <% elsif current_admin %>
-        <%= link_to 'Directory', users_path, class: "menu_item" %>
-        <%= link_to 'Profile', admin_path(current_admin.id), class: "menu_item" %>
+        <!-- <%#= link_to 'Directory', users_path, class: "menu_item" %> -->
+        <!-- <%#= link_to 'Profile', admin_path(current_admin.id), class: "menu_item" %> -->
         <%= link_to 'Admin Signout', destroy_admin_session_path, method: :delete, class: "menu_item" %>
     <% else %>
         <%= link_to 'Home', "/", class: "menu_item" %>
