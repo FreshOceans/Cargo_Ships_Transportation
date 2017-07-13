@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   # == GET /home
   def home
     puts "\n******** home ********"
-    current_user = nil
+    # current_user = nil
     puts "*** current_user.inspect: #{current_user.inspect} ***"
     @users = User.all
     puts "*** current_user.inspect: #{current_user.inspect} ****"
@@ -21,16 +21,23 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
+    puts "\n******** user_index ********"
     @users = User.all
   end
 
   # GET /users/1
   # GET /users/1.json
   def show
+    puts "\n******** user_show ********"
+    puts "*** @user.inspect, #{@user.inspect} ***"
+    puts "*** params.inspect, #{params.inspect} ***"
+    @user = User.find(params[:id])
+    puts "@user.fname: #{@user.fname}"
   end
 
   # GET /users/new
   def new
+    puts "\n******** user_new ********"
     @user = User.new
   end
 
@@ -41,12 +48,13 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.json
   def create
+    puts "\n******** create_user ********"
     @user = User.new(user_params)
-
     respond_to do |format|
       if @user.save
-        format.html { redirect_to @user, notice: 'User was successfully created.' }
+        format.html { redirect_to '/feed', notice: 'You have successfully created an account.' }
         format.json { render :show, status: :created, location: @user }
+        current_user = @user.id
       else
         format.html { render :new }
         format.json { render json: @user.errors, status: :unprocessable_entity }
@@ -57,6 +65,7 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
+    puts "\n******** update_user ********"
     respond_to do |format|
       if @user.update(user_params)
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
@@ -70,22 +79,24 @@ class UsersController < ApplicationController
 
   # DELETE /users/1
   # DELETE /users/1.json
-  def destroy
-    @user.destroy
-    respond_to do |format|
-      format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
-      format.json { head :no_content }
-    end
-  end
+  # def destroy
+  #   @user.destroy
+  #   respond_to do |format|
+  #     format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
+  #     format.json { head :no_content }
+  #   end
+  # end
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
+        puts "\n******** set_user ********"
       @user = User.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.fetch(:user, {})
+        puts "\n******** user_params ********"
+    #   params.fetch(:user, {})
     end
 end
