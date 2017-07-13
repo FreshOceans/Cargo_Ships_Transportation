@@ -1,17 +1,46 @@
-<%= form_with(model: job, local: true) do |form| %>
-  <% if job.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(job.errors.count, "error") %> prohibited this job from being saved:</h2>
+<%= puts "*** @user: #{@user.inspect} ***" %>
+<%= puts "*** @boat: #{@boat.inspect} ***" %>
+<%= puts "*** @port: #{@port.inspect} ***" %>
 
-      <ul>
-      <% job.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+
+<%= form_for([@user, @job]) do |form| %>
+
+    <div class="actions">
+        <!-- < ======= name, user_id, port_origin_id, port_destination_id, description, amount_of_containers, cost ======= > -->
+
+        <%= label :name, "Name", class: "data-label" %>: <%= form.text_field :name, id: "name", class: "data-value" %><br />
+
+        <%= label :description, "Description", class: "data-label" %>: <%= form.text_area :description, id: "description", class: "data-value" %><br />
+
+        <% selected_port_origin = nil %>
+        <% selected_port_destination = nil %>
+        <% port_name_ids = [] %>
+        <% @ports.each_with_index do |port, index| %>
+            <% port_name_ids << [port.location, port.id] %>
+            <% puts "port.id: #{port.id} #{index}" %>
+            <% if port.id == @port_origin_id %>
+                <% selected_port_origin = @port_origin_id %>
+                <% puts "selected_port: #{selected_port}" %>
+            <% end %>
+            <% if port.id == @port_destination_id %>
+                <% selected_port_destination = @destination_id %>
+                <% puts "selected_destination: #{selected_destination}" %>
+            <% end %>
+        <% end %>
+
+        <% puts "port_name_ids: #{port_name_ids}.inspect" %>
+        <%= label :port_origin_id, "Port Origin", class: "data-label" %>: <%= form.select(:port_origin_id, options_for_select(port_name_ids, 2), id: "port_orign", class: "data-value" )%><br />
+
+        <% puts "port_name_ids: #{port_name_ids}.inspect" %>
+        <%= label :port_destination_id, "Port Destination", class: "data-label" %>: <%= form.select(:port_destination_id, options_for_select(port_name_ids, 2), id: "port_destination", class: "data-value" )%><br />
+
+        <%= label :amount_of_containers, "Amount of containers", class: "data-label" %>: <%= form.text_field :amount_of_containers, id: "amount_of_containers", class: "data-value" %><br />
+
+        <%= label :cost, "Cost", class: "data-label" %>: <%= form.text_field :cost, id: "cost", class: "data-value" %><br />
+
+        <input type="hidden" name="job[user_id]" value="<%= @user.id %>">
+
+        <%= form.submit "Submit", class: "submit_btn" %>
     </div>
-  <% end %>
 
-  <div class="actions">
-    <%= form.submit %>
-  </div>
 <% end %>

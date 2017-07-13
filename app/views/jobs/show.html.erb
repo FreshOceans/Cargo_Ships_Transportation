@@ -1,4 +1,10 @@
 <p id="notice"><%= notice %></p>
 
-<%= link_to 'Edit', edit_job_path(@job) %> |
-<%= link_to 'Back', jobs_path %>
+<!-- <%#= link_to 'Edit', edit_job_path(@job) %> | -->
+
+    <p>Job Name: <%= @job.name %></p>
+    <p>Description: <%= @job.description %></p>
+    <p>Port Origin: <%= @job.port_origin_id %></p>
+    <p>Port Destination: <%= @job.port_destination_id %></p>
+    <p>Capacity: <%= @job.amount_of_containers %></p>
+    <p>Cost: <%= @job.amount_of_containers %></p>

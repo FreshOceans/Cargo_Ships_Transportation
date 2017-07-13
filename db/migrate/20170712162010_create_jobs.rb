@@ -4,7 +4,8 @@ class CreateJobs < ActiveRecord::Migration[5.1]
       t.references :user, foreign_key: true
       t.references :port_origin
       t.references :port_destination
-      t.string :description
+      t.string :name
+      t.text :description
       t.integer :amount_of_containers
       t.integer :cost
 

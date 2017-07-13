@@ -70,7 +70,8 @@ ActiveRecord::Schema.define(version: 20170713010625) do
     t.bigint "user_id"
     t.bigint "port_origin_id"
     t.bigint "port_destination_id"
-    t.string "description"
+    t.string "name"
+    t.text "description"
     t.integer "amount_of_containers"
     t.integer "cost"
     t.datetime "created_at", null: false

@@ -6,18 +6,27 @@ class JobsController < ApplicationController
   def index
     puts "\n******** job_index ********"
     @jobs = Job.all
+    @user = User.find(current_user.id)
+    puts "******** @jobs, #{@jobs} ********"
   end
 
   # GET /jobs/1
   # GET /jobs/1.json
   def show
     puts "\n******** job_show ********"
+    puts "*** params.inspect: #{params.inspect} ***"
+    @user = User.find(current_user.id)
+    puts "***== @user.inspect, #{@user.inspect} ==***"
   end
 
   # GET /jobs/new
   def new
     puts "\n******** job_new ********"
     @job = Job.new
+    @user = User.find(current_user.id)
+    @ports = Port.all
+    puts "*** @user.inspect: #{@user.inspect} ***"
+    puts "*** @port.inspect: #{@port.inspect} ***"
   end
 
   # GET /jobs/1/edit
@@ -33,7 +42,7 @@ class JobsController < ApplicationController
 
     respond_to do |format|
       if @job.save
-        format.html { redirect_to @job, notice: 'Job was successfully created.' }
+        format.html { redirect_to user_jobs_path(current_user.id), notice: 'Job was successfully created.' }
         format.json { render :show, status: :created, location: @job }
       else
         format.html { render :new }
@@ -48,7 +57,7 @@ class JobsController < ApplicationController
     puts "\n******** job_update ********"
     respond_to do |format|
       if @job.update(job_params)
-        format.html { redirect_to @job, notice: 'Job was successfully updated.' }
+        format.html { redirect_to user_jobs_path(current_user.id), notice: 'Job was successfully updated.' }
         format.json { render :show, status: :ok, location: @job }
       else
         format.html { render :edit }
@@ -77,6 +86,6 @@ class JobsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def job_params
       puts "\n******** job_params ********"
-      params.require(:job).permit(:user_id, :port_origin_id, :port_destination_id, :description,  :amount_of_containers, :cost)
+      params.require(:job).permit(:name, :user_id, :port_origin_id, :port_destination_id, :description,  :amount_of_containers, :cost)
     end
 end

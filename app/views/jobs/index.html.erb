@@ -14,7 +14,7 @@
   <tbody>
     <% @jobs.each do |job| %>
       <tr>
-          <td></td>
+          <td><%= link_to job.name, user_job_path(@user, job.id) %> </td>
       </tr>
     <% end %>
   </tbody>

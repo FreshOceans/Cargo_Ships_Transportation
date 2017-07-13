@@ -41,14 +41,14 @@ Boat.create([
     { user_id:5, port_id:5, name:"Lucian", amount_of_containers:62 }
 ])
 
-# Job: user_id:integer, port_origin_id:integer, port_destination_id:integer, description:string, amount_of_containers:integer, cost:integer created_at:timestamp updated_at:timestamp
+# Job: name:string, user_id:integer, port_origin_id:integer, port_destination_id:integer, description:text, amount_of_containers:integer, cost:integer created_at:timestamp updated_at:timestamp
 Job.destroy_all
 Job.create([
-    { user_id:1, port_origin_id:1, port_destination_id:3, description:"Silicon Chips", amount_of_containers:10, cost:1000  },
-    { user_id:2, port_origin_id:2, port_destination_id:4, description:"Coffee", amount_of_containers:25, cost:2500 },
-    { user_id:3, port_origin_id:3, port_destination_id:5, description:"Tea", amount_of_containers:7, cost:700 },
-    { user_id:4, port_origin_id:4, port_destination_id:2, description:"Bottled Water", amount_of_containers:14, cost:1400 },
-    { user_id:5, port_origin_id:5, port_destination_id:1, description:"Mangos", amount_of_containers:62, cost:6200 }
+    { name: "Tech" , user_id:1, port_origin_id:1, port_destination_id:3, description:"Silicon Chips", amount_of_containers:10, cost:1000  },
+    { name: "Beans" , user_id:2, port_origin_id:2, port_destination_id:4, description:"Coffee", amount_of_containers:25, cost:2500 },
+    { name: "Herbs", user_id:3, port_origin_id:3, port_destination_id:5, description:"Tea", amount_of_containers:7, cost:700 },
+    { name: "H20", user_id:4, port_origin_id:4, port_destination_id:2, description:"Bottled Water", amount_of_containers:14, cost:1400 },
+    { name: "Fruits", user_id:5, port_origin_id:5, port_destination_id:1, description:"Mangos", amount_of_containers:62, cost:6200 }
 ])
 
 # Comment user_id:integer job_id:integer content:string created_at:timestamp updated_at:timestamp
