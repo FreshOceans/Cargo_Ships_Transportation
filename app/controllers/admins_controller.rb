@@ -2,20 +2,21 @@ class AdminsController < ApplicationController
   before_action :set_admin, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_admin!, except: [:home]
 
-  # == GET /home
-  def home
-    puts "\n******** admin_home ********"
-    # current_admin = nil
-    puts "*** current_admin.inspect: #{current_admin.inspect} ***"
-    @admins = Admin.all
-    puts "*** current_admin.inspect: #{current_admin.inspect} ****"
-  end
+  # # == GET /home
+  # def home
+  #   puts "\n******** admin_home ********"
+  #   # current_admin = nil
+  #   puts "*** current_admin.inspect: #{current_admin.inspect} ***"
+  #   @admins = Admin.all
+  #   puts "*** current_admin.inspect: #{current_admin.inspect} ****"
+  # end
+  #
+  # # == GET /feed
+  # def feed
+  #   puts "\n******** admin_feed ********"
+  #   @admin = Admin.find(current_admin.id)
+  # end
 
-  # == GET /feed
-  def feed
-    puts "\n******** admin_feed ********"
-    @admin = Admin.find(current_admin.id)
-  end
   # GET /admins
   # GET /admins.json
   def index

@@ -1857,3 +1857,192 @@ Processing by Users::RegistrationsController#new as HTML
 Completed 200 OK in 68ms (Views: 65.5ms | ActiveRecord: 0.0ms)
 
 
+Started GET "/" for 127.0.0.1 at 2017-07-12 22:18:10 -0400
+Processing by UsersController#home as HTML
+  Rendering users/home.html.erb within layouts/application
+  Rendered users/home.html.erb within layouts/application (0.7ms)
+  Rendered users/_menu.html.erb (8.7ms)
+Completed 200 OK in 51ms (Views: 46.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/admins/sign_in" for 127.0.0.1 at 2017-07-12 22:18:27 -0400
+  [1m[35m (1.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Devise::SessionsController#new as HTML
+  Rendering admins/sessions/new.html.erb within layouts/application
+  Rendered admins/shared/_links.html.erb (2.2ms)
+  Rendered admins/sessions/new.html.erb within layouts/application (50.2ms)
+  Rendered users/_menu.html.erb (2.9ms)
+Completed 200 OK in 637ms (Views: 547.3ms | ActiveRecord: 9.6ms)
+
+
+Started POST "/admins/sign_in" for 127.0.0.1 at 2017-07-12 22:18:44 -0400
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"yhBnvGM8KwMApgE3lfboCuw/qULJVYoXZ4xBKYGOc1WQYhuzGP7kjsHoCzgtQbHiwtlbBCb0yQaMfPAwx/umyQ==", "admin"=>{"username"=>"akuma", "password"=>"[FILTERED]", "remember_me"=>"1"}, "commit"=>"Log in"}
+  [1m[36mAdmin Load (2.9ms)[0m  [1m[34mSELECT  "admins".* FROM "admins" WHERE "admins"."username" = $1 ORDER BY "admins"."id" ASC LIMIT $2[0m  [["username", "akuma"], ["LIMIT", 1]]
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.0ms)[0m  [1m[33mUPDATE "admins" SET "remember_created_at" = $1, "updated_at" = $2 WHERE "admins"."id" = $3[0m  [["remember_created_at", "2017-07-13 02:18:45.101014"], ["updated_at", "2017-07-13 02:18:45.102913"], ["id", 1]]
+  [1m[35m (6.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[33mUPDATE "admins" SET "updated_at" = $1, "sign_in_count" = $2, "current_sign_in_at" = $3, "last_sign_in_at" = $4 WHERE "admins"."id" = $5[0m  [["updated_at", "2017-07-13 02:18:45.116015"], ["sign_in_count", 4], ["current_sign_in_at", "2017-07-13 02:18:45.115137"], ["last_sign_in_at", "2017-07-13 02:05:10.327875"], ["id", 1]]
+  [1m[35m (6.0ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 237ms (ActiveRecord: 17.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-07-12 22:18:45 -0400
+Processing by UsersController#home as HTML
+  Rendering users/home.html.erb within layouts/application
+  Rendered users/home.html.erb within layouts/application (0.5ms)
+  [1m[36mAdmin Load (0.7ms)[0m  [1m[34mSELECT  "admins".* FROM "admins" WHERE "admins"."id" = $1 ORDER BY "admins"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered users/_menu.html.erb (3.9ms)
+Completed 200 OK in 35ms (Views: 29.9ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/admins/1" for 127.0.0.1 at 2017-07-12 22:18:48 -0400
+Processing by AdminsController#show as HTML
+  Parameters: {"id"=>"1"}
+Completed 401 Unauthorized in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2017-07-12 22:18:48 -0400
+Processing by Devise::SessionsController#new as HTML
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (1.7ms)
+  Rendered devise/sessions/new.html.erb within layouts/application (9.9ms)
+  [1m[36mAdmin Load (0.7ms)[0m  [1m[34mSELECT  "admins".* FROM "admins" WHERE "admins"."id" = $1 ORDER BY "admins"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered users/_menu.html.erb (4.1ms)
+Completed 200 OK in 140ms (Views: 60.5ms | ActiveRecord: 10.3ms)
+
+
+Started GET "/users" for 127.0.0.1 at 2017-07-12 22:18:52 -0400
+Processing by UsersController#index as HTML
+  [1m[36mAdmin Load (1.7ms)[0m  [1m[34mSELECT  "admins".* FROM "admins" WHERE "admins"."id" = $1 ORDER BY "admins"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+Completed 401 Unauthorized in 16ms (ActiveRecord: 1.7ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2017-07-12 22:18:52 -0400
+Processing by Devise::SessionsController#new as HTML
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (1.4ms)
+  Rendered devise/sessions/new.html.erb within layouts/application (7.1ms)
+  [1m[36mAdmin Load (0.6ms)[0m  [1m[34mSELECT  "admins".* FROM "admins" WHERE "admins"."id" = $1 ORDER BY "admins"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered users/_menu.html.erb (4.5ms)
+Completed 200 OK in 59ms (Views: 56.5ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/admins/1" for 127.0.0.1 at 2017-07-12 22:18:55 -0400
+Processing by AdminsController#show as HTML
+  Parameters: {"id"=>"1"}
+Completed 401 Unauthorized in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2017-07-12 22:18:55 -0400
+Processing by Devise::SessionsController#new as HTML
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (2.2ms)
+  Rendered devise/sessions/new.html.erb within layouts/application (9.0ms)
+  [1m[36mAdmin Load (1.2ms)[0m  [1m[34mSELECT  "admins".* FROM "admins" WHERE "admins"."id" = $1 ORDER BY "admins"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered users/_menu.html.erb (6.9ms)
+Completed 200 OK in 80ms (Views: 67.6ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-07-12 22:20:12 -0400
+Processing by UsersController#home as HTML
+  Rendering users/home.html.erb within layouts/application
+  Rendered users/home.html.erb within layouts/application (1.5ms)
+  [1m[36mAdmin Load (0.6ms)[0m  [1m[34mSELECT  "admins".* FROM "admins" WHERE "admins"."id" = $1 ORDER BY "admins"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered users/_menu.html.erb (7.3ms)
+Completed 200 OK in 85ms (Views: 77.8ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/admins/1" for 127.0.0.1 at 2017-07-12 22:20:14 -0400
+Processing by AdminsController#show as HTML
+  Parameters: {"id"=>"1"}
+Completed 401 Unauthorized in 9ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2017-07-12 22:20:14 -0400
+Processing by Devise::SessionsController#new as HTML
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (3.2ms)
+  Rendered devise/sessions/new.html.erb within layouts/application (12.5ms)
+  [1m[36mAdmin Load (0.6ms)[0m  [1m[34mSELECT  "admins".* FROM "admins" WHERE "admins"."id" = $1 ORDER BY "admins"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered users/_menu.html.erb (6.5ms)
+Completed 200 OK in 106ms (Views: 103.3ms | ActiveRecord: 0.6ms)
+
+
+Started DELETE "/admins/sign_out" for 127.0.0.1 at 2017-07-12 22:20:18 -0400
+Processing by Devise::SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"WBTKP/d9FzKzxIC4IvDJ7zYn8ogUMuyW5J1g8kirlWtlfwguAGDmec0WmGlFIKyHyfhELybkalwL58ET9qbrKA=="}
+  [1m[36mAdmin Load (1.0ms)[0m  [1m[34mSELECT  "admins".* FROM "admins" WHERE "admins"."id" = $1 ORDER BY "admins"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[33mUPDATE "admins" SET "remember_created_at" = $1, "updated_at" = $2 WHERE "admins"."id" = $3[0m  [["remember_created_at", nil], ["updated_at", "2017-07-13 02:20:18.496404"], ["id", 1]]
+  [1m[35m (3.8ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 18ms (ActiveRecord: 5.5ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-07-12 22:20:18 -0400
+Processing by UsersController#home as HTML
+  Rendering users/home.html.erb within layouts/application
+  Rendered users/home.html.erb within layouts/application (0.4ms)
+  Rendered users/_menu.html.erb (2.1ms)
+Completed 200 OK in 95ms (Views: 91.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2017-07-12 22:20:20 -0400
+Processing by Devise::SessionsController#new as HTML
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (8.8ms)
+  Rendered devise/sessions/new.html.erb within layouts/application (15.5ms)
+  Rendered users/_menu.html.erb (6.1ms)
+Completed 200 OK in 100ms (Views: 97.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_up" for 127.0.0.1 at 2017-07-12 22:20:50 -0400
+Processing by Users::RegistrationsController#new as HTML
+  Rendering devise/registrations/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (1.6ms)
+  Rendered devise/registrations/new.html.erb within layouts/application (9.5ms)
+  Rendered users/_menu.html.erb (1.9ms)
+Completed 200 OK in 100ms (Views: 69.1ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/users" for 127.0.0.1 at 2017-07-12 22:21:08 -0400
+Processing by Users::RegistrationsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"FT6auo1JysizAIDcXaIBI3q7W+o1hXx282QNp4ufPXaGhFp9rxB4M1CL9Z8xWODPXbEVE3XdUsn4siuXRXYHUA==", "user"=>{"firstname"=>"Mac", "lastname"=>"Book", "username"=>"pro", "email"=>"pro@aol.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Sign up"}
+  [1m[35m (2.6ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists (1.0ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "pro@aol.com"], ["LIMIT", 1]]
+  [1m[35mSQL (0.8ms)[0m  [1m[32mINSERT INTO "users" ("firstname", "lastname", "email", "username", "created_at", "updated_at", "encrypted_password") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["firstname", "Mac"], ["lastname", "Book"], ["email", "pro@aol.com"], ["username", "pro"], ["created_at", "2017-07-13 02:21:08.817737"], ["updated_at", "2017-07-13 02:21:08.817737"], ["encrypted_password", "$2a$11$racLurL7s03Sop9KIHOCt.qgAt1vEZLibryfmgfzkPBmTEof0GoWi"]]
+  [1m[35m (6.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.0ms)[0m  [1m[33mUPDATE "users" SET "updated_at" = $1, "sign_in_count" = $2, "current_sign_in_at" = $3, "last_sign_in_at" = $4, "current_sign_in_ip" = $5, "last_sign_in_ip" = $6 WHERE "users"."id" = $7[0m  [["updated_at", "2017-07-13 02:21:08.828141"], ["sign_in_count", 1], ["current_sign_in_at", "2017-07-13 02:21:08.827547"], ["last_sign_in_at", "2017-07-13 02:21:08.827547"], ["current_sign_in_ip", "127.0.0.1/32"], ["last_sign_in_ip", "127.0.0.1/32"], ["id", 7]]
+  [1m[35m (5.9ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 391ms (ActiveRecord: 17.6ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-07-12 22:21:08 -0400
+Processing by UsersController#home as HTML
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  Rendering users/home.html.erb within layouts/application
+  Rendered users/home.html.erb within layouts/application (2.8ms)
+  Rendered users/_menu.html.erb (1.4ms)
+Completed 200 OK in 69ms (Views: 48.5ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/users" for 127.0.0.1 at 2017-07-12 22:21:17 -0400
+Processing by UsersController#index as HTML
+Completed 401 Unauthorized in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/admins/sign_in" for 127.0.0.1 at 2017-07-12 22:21:17 -0400
+Processing by Devise::SessionsController#new as HTML
+  Rendering admins/sessions/new.html.erb within layouts/application
+  Rendered admins/shared/_links.html.erb (1.6ms)
+  Rendered admins/sessions/new.html.erb within layouts/application (11.0ms)
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  Rendered users/_menu.html.erb (3.5ms)
+Completed 200 OK in 48ms (Views: 45.2ms | ActiveRecord: 0.6ms)
+
+
