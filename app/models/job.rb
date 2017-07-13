@@ -8,8 +8,8 @@ class Job < ApplicationRecord
   has_many :boat_jobs
   has_many :boats, through: :boat_jobs, dependent: :destroy
 
-
-
-
+  validates :name, :uniqueness => true, :presence => { :message => "This name has been taken already." }
+  validates :amount_of_containers, numericality: true
+  validates :description, length: {minimum: 4, maximum: 50}
 
 end

@@ -16,6 +16,9 @@ class JobsController < ApplicationController
     puts "\n******** job_show ********"
     puts "*** params.inspect: #{params.inspect} ***"
     @user = User.find(current_user.id)
+    @comment = Comment.new
+    @comments = @job.comments
+
     puts "***== @user.inspect, #{@user.inspect} ==***"
   end
 
@@ -25,8 +28,10 @@ class JobsController < ApplicationController
     @job = Job.new
     @user = User.find(current_user.id)
     @ports = Port.all
+    @boats = Boat.all
     puts "*** @user.inspect: #{@user.inspect} ***"
     puts "*** @port.inspect: #{@port.inspect} ***"
+    puts "*** @boat.inspect: #{@boat.inspect} ***"
   end
 
   # GET /jobs/1/edit
@@ -45,6 +50,9 @@ class JobsController < ApplicationController
         format.html { redirect_to user_jobs_path(current_user.id), notice: 'Job was successfully created.' }
         format.json { render :show, status: :created, location: @job }
       else
+        @user = User.find(current_user.id)
+        @ports = Port.all
+        @boats = Boat.all
         format.html { render :new }
         format.json { render json: @job.errors, status: :unprocessable_entity }
       end

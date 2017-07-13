@@ -1,10 +1,22 @@
 <p id="notice"><%= notice %></p>
 
 <!-- <%#= link_to 'Edit', edit_job_path(@job) %> | -->
-
+<div id="job_info">
     <p>Job Name: <%= @job.name %></p>
     <p>Description: <%= @job.description %></p>
     <p>Port Origin: <%= @job.port_origin_id %></p>
     <p>Port Destination: <%= @job.port_destination_id %></p>
     <p>Capacity: <%= @job.amount_of_containers %></p>
     <p>Cost: <%= @job.amount_of_containers %></p>
+</div>
+
+<div id="comment_info">
+    <% @comments.each do |comment| %>
+        <p><%= @user.username %>: <%= comment.content %> </p>
+    <% end %>
+
+    <% puts "**** @user.inspect: #{@user.inspect} ****" %>
+    <% puts "**** @comment.inspect: #{@comment.inspect} ****" %>
+
+    <br> <%= render :partial => 'comments/form' %>
+</div>

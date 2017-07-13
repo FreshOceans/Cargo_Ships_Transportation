@@ -56,7 +56,7 @@ class UsersController < ApplicationController
         format.json { render :show, status: :created, location: @user }
         current_user = @user.id
       else
-        format.html { render :new }
+        format.html { redirect_to '/', notice: 'User not created'}
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end

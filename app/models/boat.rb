@@ -4,7 +4,6 @@ class Boat < ApplicationRecord
   has_many :boat_jobs
   has_many :jobs, through: :boat_jobs, dependent: :destroy
 
-  validates :name, uniqueness: true
-  validates :name, presence: { message: 'Please enter a valid Name' }
-
+  validates :name, :uniqueness => true, :presence => { :message => "This boat name has been taken." }
+  validates :amount_of_containers, numericality: true, :presence => { :message => "Please enter a valid number." }
 end

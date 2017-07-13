@@ -47,10 +47,12 @@ class BoatsController < ApplicationController
 
     respond_to do |format|
       if @boat.save
-        format.html { redirect_to '/feed', notice: 'Boat was successfully created.' }
+        format.html { redirect_to user_boats_path(current_user), notice: 'Boat was successfully created.' }
         format.json { render :show, status: :created, location: @boat }
       else
-        format.html { redirect_to new_user_boat_path(current_user), notice: 'Boat was not created.'  }
+        @user = User.find(current_user.id)
+        @ports = Port.all
+        format.html { render :new }
         format.json { render json: @boat.errors, status: :unprocessable_entity }
       end
     end

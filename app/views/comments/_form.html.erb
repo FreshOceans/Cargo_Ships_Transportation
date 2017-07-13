@@ -1,17 +1,17 @@
-<%= form_with(model: comment, local: true) do |form| %>
-  <% if comment.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
+  <%= puts "*** @user: #{@user.inspect} ***" %>
+  <%= puts "*** @job: #{@job.inspect} ***" %>
+  <%= puts "*** @comment: #{@comment.inspect} ***" %>
 
-      <ul>
-      <% comment.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
+  <%= form_for([@user, @comment]) do |form| %>
+
+      <div class="actions">
+          <!-- content -->
+          <%= label :content, "Comment", class: "data-label" %>: <%= form.text_area :content, id: "content", class: "data-value" %><br />
+          <input type="hidden" name="comment[user_id]" value="<%= @user.id %>">
+          <input type="hidden" name="comment[job_id]" value="<%= @job.id %>">
+
+          <%= puts "***== @job.id: #{@job.id} ==***" %>
+          <%= form.submit "Comment", class: "submit_btn" %>
+      </div>
+
   <% end %>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
