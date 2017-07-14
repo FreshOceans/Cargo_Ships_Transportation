@@ -1,3 +1,14 @@
 # validates :username, :uniqueness => true, :presence => { :message => "Username cannot be blank" }
 # validates :password, :presence => { :message => "Please enter a password that contains at least 10 letters including at least one number and a special character" }, :confirmation => true
 # validates :email, :presence => { :message => "Please enter a valid email" }, :confirmation => true
+
+
+respond_to do |format|
+  if @job.save
+    format.html { redirect_to user_jobs_path(current_user.id), notice: 'Job was successfully created.' }
+    format.json { render :show, status: :created, location: @job }
+    # @job = Job.order(created_at)
+    # @boat_jobs = Boatjobs.new(@job, )
+
+end
+end

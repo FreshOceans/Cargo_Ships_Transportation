@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   root to: "users#home"
   # root to: "admins#home"
   get "/feed" => "users#feed"
+  # get "/new_job/:id" => "jobs#new_job"
+
 
   # == RESTful routes
   resources :users do

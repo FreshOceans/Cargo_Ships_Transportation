@@ -31,7 +31,7 @@ class JobsController < ApplicationController
     @job = Job.new
     puts "*** @user.inspect: #{@user.inspect} ***"
     puts "*** @port.inspect: #{@port.inspect} ***"
-    puts "*** @boat.inspect: #{@boat.inspect} ***"
+    puts "*** @boats.inspect: #{@boats.inspect} ***"
   end
 
   # GET /jobs/1/edit
@@ -41,15 +41,13 @@ class JobsController < ApplicationController
 
   # POST /jobs
   # POST /jobs.json
-  def create
-    puts "\n******** job_create ********"
-    @job = Job.new(job_params)
-    user_id = @job.user.id
-
-    respond_to do |format|
+    def create
+      puts "\n******** job_create ********"
+      puts "*** @boat.inspect: #{@boat.inspect} ***"
+      @job = Job.new(job_params)
       if @job.save
-        format.html { redirect_to user_jobs_path(current_user.id), notice: 'Job was successfully created.' }
-        format.json { render :show, status: :created, location: @job }
+        @job.boats << Boat.find(params[:boat_id])
+        redirect_to user_jobs_path(current_user.id)
       else
         @user = User.find(current_user.id)
         @ports = Port.all
@@ -58,7 +56,6 @@ class JobsController < ApplicationController
         format.json { render json: @job.errors, status: :unprocessable_entity }
       end
     end
-  end
 
   # PATCH/PUT /jobs/1
   # PATCH/PUT /jobs/1.json
@@ -95,6 +92,7 @@ class JobsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def job_params
       puts "\n******** job_params ********"
+    #   binding.pry
       params.require(:job).permit(:name, :user_id, :boat_id, :port_origin_id, :port_destination_id, :description,  :amount_of_containers, :cost)
     end
 end
