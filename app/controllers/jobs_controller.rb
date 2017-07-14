@@ -25,10 +25,10 @@ class JobsController < ApplicationController
   # GET /jobs/new
   def new
     puts "\n******** job_new ********"
-    @job = Job.new
     @user = User.find(current_user.id)
     @ports = Port.all
     @boats = Boat.all
+    @job = Job.new
     puts "*** @user.inspect: #{@user.inspect} ***"
     puts "*** @port.inspect: #{@port.inspect} ***"
     puts "*** @boat.inspect: #{@boat.inspect} ***"
@@ -44,6 +44,7 @@ class JobsController < ApplicationController
   def create
     puts "\n******** job_create ********"
     @job = Job.new(job_params)
+    user_id = @job.user.id
 
     respond_to do |format|
       if @job.save
@@ -94,6 +95,6 @@ class JobsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def job_params
       puts "\n******** job_params ********"
-      params.require(:job).permit(:name, :user_id, :port_origin_id, :port_destination_id, :description,  :amount_of_containers, :cost)
+      params.require(:job).permit(:name, :user_id, :boat_id, :port_origin_id, :port_destination_id, :description,  :amount_of_containers, :cost)
     end
 end

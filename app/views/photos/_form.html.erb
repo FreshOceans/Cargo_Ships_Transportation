@@ -1,0 +1,28 @@
+<!-- # ======= photos/_form.html.erb ======= -->
+<%= form_for([current_user, @photo]) do |f| %>
+
+    <div class="field">
+         <%= f.label :content_type %><br />
+         <%= select_tag(:content_type, options_for_select([['image/jpeg', 1], ['image/png', 2], ['image/gif', 3]], 1)) %>
+     </div>
+     <div class="field">
+         <%= f.label :title %><br />
+         <%= f.text_field :title, autofocus: true %>
+     </div>
+     <div class="field">
+         <%= f.label :caption %><br />
+         <%= f.text_field :caption, autofocus: true %>
+     </div>
+
+     <div class="file-field">
+         <%= f.label :image %><br />
+         <%= f.file_field :image, class: 'file-field' %>
+     </div>
+
+     <div class="field">
+         <%= f.submit "Save Photo", class: 'photo-button' %>
+     </div>
+
+     <input type="hidden" name="photo[user_id]" value="<%= @user.id %>">
+
+<% end %>

@@ -9604,3 +9604,195 @@ Did you mean?  boat_ids
 app/views/jobs/_form.html.erb:62:in `block in _app_views_jobs__form_html_erb__85181997927013770_70147076344520'
 app/views/jobs/_form.html.erb:5:in `_app_views_jobs__form_html_erb__85181997927013770_70147076344520'
 app/views/jobs/new.html.erb:3:in `_app_views_jobs_new_html_erb__3168589089360236580_70147076586360'
+Started GET "/users/sign_in" for 127.0.0.1 at 2017-07-14 15:09:18 -0400
+  [1m[35m (1.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Users::SessionsController#new as HTML
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (16.8ms)
+  Rendered devise/sessions/new.html.erb within layouts/application (58.0ms)
+  Rendered users/_menu.html.erb (2.0ms)
+Completed 200 OK in 444ms (Views: 380.9ms | ActiveRecord: 9.2ms)
+
+
+Started POST "/users/sign_in" for 127.0.0.1 at 2017-07-14 15:09:25 -0400
+Processing by Users::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"5QZ+YOIuxsQx6ZDXgTQGGzKKiRR/iAkIU4wEUnGfQJjuZuCHuiuQ/isHFqcm4J5sWNQQw8Jmx8g/cpl3m2pIxA==", "user"=>{"username"=>"val", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  [1m[36mUser Load (1.8ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."username" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["username", "val"], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.0ms)[0m  [1m[33mUPDATE "users" SET "current_sign_in_at" = $1, "sign_in_count" = $2, "updated_at" = $3 WHERE "users"."id" = $4[0m  [["current_sign_in_at", "2017-07-14 19:09:25.787660"], ["sign_in_count", 2], ["updated_at", "2017-07-14 19:09:25.789152"], ["id", 1]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 208ms (ActiveRecord: 3.5ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-07-14 15:09:25 -0400
+Processing by UsersController#home as HTML
+  Rendering users/home.html.erb within layouts/application
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered users/home.html.erb within layouts/application (3.6ms)
+  Rendered users/_menu.html.erb (1.6ms)
+Completed 200 OK in 37ms (Views: 32.6ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/users/1/boats" for 127.0.0.1 at 2017-07-14 15:09:27 -0400
+Processing by BoatsController#index as HTML
+  Parameters: {"user_id"=>"1"}
+  [1m[36mUser Load (5.9ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering boats/index.html.erb within layouts/application
+  [1m[36mBoat Load (1.1ms)[0m  [1m[34mSELECT "boats".* FROM "boats"[0m
+  Rendered boats/index.html.erb within layouts/application (19.3ms)
+  Rendered users/_menu.html.erb (1.6ms)
+Completed 200 OK in 123ms (Views: 49.2ms | ActiveRecord: 12.8ms)
+
+
+Started GET "/users/1/jobs" for 127.0.0.1 at 2017-07-14 15:09:28 -0400
+Processing by JobsController#index as HTML
+  Parameters: {"user_id"=>"1"}
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering jobs/index.html.erb within layouts/application
+  [1m[36mJob Load (6.9ms)[0m  [1m[34mSELECT "jobs".* FROM "jobs"[0m
+  Rendered jobs/index.html.erb within layouts/application (47.9ms)
+  Rendered users/_menu.html.erb (1.4ms)
+Completed 200 OK in 183ms (Views: 81.8ms | ActiveRecord: 16.3ms)
+
+
+Started GET "/users/1/jobs" for 127.0.0.1 at 2017-07-14 15:09:30 -0400
+Processing by JobsController#index as HTML
+  Parameters: {"user_id"=>"1"}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering jobs/index.html.erb within layouts/application
+  [1m[36mJob Load (0.5ms)[0m  [1m[34mSELECT "jobs".* FROM "jobs"[0m
+  Rendered jobs/index.html.erb within layouts/application (2.3ms)
+  Rendered users/_menu.html.erb (1.7ms)
+Completed 200 OK in 40ms (Views: 33.5ms | ActiveRecord: 1.4ms)
+
+
+Started GET "/users/1/jobs/new" for 127.0.0.1 at 2017-07-14 15:09:32 -0400
+Processing by JobsController#new as HTML
+  Parameters: {"user_id"=>"1"}
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mPort Load (0.9ms)[0m  [1m[34mSELECT  "ports".* FROM "ports" LIMIT $1[0m  [["LIMIT", 11]]
+  [1m[36mCACHE Port Load (0.0ms)[0m  [1m[34mSELECT  "ports".* FROM "ports" LIMIT $1[0m  [["LIMIT", 11]]
+Completed 500 Internal Server Error in 329ms (ActiveRecord: 1.6ms)
+
+
+  
+  [1m[36mCACHE Port Load (0.0ms)[0m  [1m[34mSELECT  "ports".* FROM "ports" LIMIT $1[0m  [["LIMIT", 11]]
+NameError (undefined local variable or method `boat_id' for #<JobsController:0x007f82dce99e70>):
+  
+app/controllers/jobs_controller.rb:30:in `new'
+Started GET "/users/1/jobs/new" for 127.0.0.1 at 2017-07-14 15:09:52 -0400
+Processing by JobsController#new as HTML
+  Parameters: {"user_id"=>"1"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering jobs/new.html.erb within layouts/application
+  [1m[36mPort Load (0.5ms)[0m  [1m[34mSELECT "ports".* FROM "ports"[0m
+  [1m[36mBoat Load (0.5ms)[0m  [1m[34mSELECT "boats".* FROM "boats"[0m
+  Rendered jobs/_form.html.erb (98.1ms)
+  Rendered jobs/new.html.erb within layouts/application (102.3ms)
+Completed 500 Internal Server Error in 237ms (ActiveRecord: 28.3ms)
+
+
+  
+ActionView::Template::Error (undefined method `boat_id' for #<Job:0x007f82e1346230>
+Did you mean?  boat_ids
+               boat_ids=):
+    59:             <% end %>
+    60:         <% end %>
+    61: 
+    62:         <%= label :boat_id, "Boat", class: "data-label" %>: <%= form.select(:boat_id, options_for_select(boat_name_ids, 2), id: "boat", class: "data-value" )%><br />
+    63: 
+    64:         <input type="hidden" name="job[user_id]" value="<%= @user.id %>">
+    65: 
+  
+app/views/jobs/_form.html.erb:62:in `block in _app_views_jobs__form_html_erb__2882023551141686855_70100043381640'
+app/views/jobs/_form.html.erb:5:in `_app_views_jobs__form_html_erb__2882023551141686855_70100043381640'
+app/views/jobs/new.html.erb:3:in `_app_views_jobs_new_html_erb__3031559399336576852_70100050702860'
+Started GET "/users/1/jobs/new" for 127.0.0.1 at 2017-07-14 15:09:54 -0400
+Processing by JobsController#new as HTML
+  Parameters: {"user_id"=>"1"}
+  [1m[36mUser Load (1.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (3.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering jobs/new.html.erb within layouts/application
+  [1m[36mPort Load (0.8ms)[0m  [1m[34mSELECT "ports".* FROM "ports"[0m
+  [1m[36mBoat Load (0.5ms)[0m  [1m[34mSELECT "boats".* FROM "boats"[0m
+  Rendered jobs/_form.html.erb (54.7ms)
+  Rendered jobs/new.html.erb within layouts/application (58.5ms)
+Completed 500 Internal Server Error in 92ms (ActiveRecord: 6.0ms)
+
+
+  
+ActionView::Template::Error (undefined method `boat_id' for #<Job:0x007f82ded24d18>
+Did you mean?  boat_ids
+               boat_ids=):
+    59:             <% end %>
+    60:         <% end %>
+    61: 
+    62:         <%= label :boat_id, "Boat", class: "data-label" %>: <%= form.select(:boat_id, options_for_select(boat_name_ids, 2), id: "boat", class: "data-value" )%><br />
+    63: 
+    64:         <input type="hidden" name="job[user_id]" value="<%= @user.id %>">
+    65: 
+  
+app/views/jobs/_form.html.erb:62:in `block in _app_views_jobs__form_html_erb__2882023551141686855_70100030488420'
+app/views/jobs/_form.html.erb:5:in `_app_views_jobs__form_html_erb__2882023551141686855_70100030488420'
+app/views/jobs/new.html.erb:3:in `_app_views_jobs_new_html_erb__3031559399336576852_70100038223860'
+Started GET "/users/1/jobs/new" for 127.0.0.1 at 2017-07-14 15:13:20 -0400
+Processing by JobsController#new as HTML
+  Parameters: {"user_id"=>"1"}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering jobs/new.html.erb within layouts/application
+  [1m[36mPort Load (1.1ms)[0m  [1m[34mSELECT "ports".* FROM "ports"[0m
+  [1m[36mBoat Load (2.8ms)[0m  [1m[34mSELECT "boats".* FROM "boats"[0m
+  Rendered jobs/_form.html.erb (50.3ms)
+  Rendered jobs/new.html.erb within layouts/application (53.3ms)
+Completed 500 Internal Server Error in 72ms (ActiveRecord: 5.4ms)
+
+
+  
+ActionView::Template::Error (undefined method `boat_id' for #<Job:0x007f82e00f5ae0>
+Did you mean?  boat_ids
+               boat_ids=):
+    59:             <% end %>
+    60:         <% end %>
+    61: 
+    62:         <p>Boat:</p> <%= form.select(:boat_id, options_for_select(boat_name_ids, 2), id: "boat", class: "data-value" )%><br />
+    63: 
+    64:         <input type="hidden" name="job[user_id]" value="<%= @user.id %>">
+    65: 
+  
+app/views/jobs/_form.html.erb:62:in `block in _app_views_jobs__form_html_erb__2882023551141686855_70100040776460'
+app/views/jobs/_form.html.erb:5:in `_app_views_jobs__form_html_erb__2882023551141686855_70100040776460'
+app/views/jobs/new.html.erb:3:in `_app_views_jobs_new_html_erb__3031559399336576852_70100039665980'
+Started GET "/users/1/jobs/new" for 127.0.0.1 at 2017-07-14 15:13:59 -0400
+Processing by JobsController#new as HTML
+  Parameters: {"user_id"=>"1"}
+  [1m[36mUser Load (1.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering jobs/new.html.erb within layouts/application
+  [1m[36mPort Load (0.9ms)[0m  [1m[34mSELECT "ports".* FROM "ports"[0m
+  [1m[36mBoat Load (0.7ms)[0m  [1m[34mSELECT "boats".* FROM "boats"[0m
+  Rendered jobs/_form.html.erb (33.8ms)
+  Rendered jobs/new.html.erb within layouts/application (37.3ms)
+  Rendered users/_menu.html.erb (1.4ms)
+Completed 200 OK in 82ms (Views: 69.7ms | ActiveRecord: 4.1ms)
+
+
+Started GET "/users/1/jobs/new" for 127.0.0.1 at 2017-07-14 15:14:01 -0400
+Processing by JobsController#new as HTML
+  Parameters: {"user_id"=>"1"}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering jobs/new.html.erb within layouts/application
+  [1m[36mPort Load (0.9ms)[0m  [1m[34mSELECT "ports".* FROM "ports"[0m
+  [1m[36mBoat Load (1.0ms)[0m  [1m[34mSELECT "boats".* FROM "boats"[0m
+  Rendered jobs/_form.html.erb (9.4ms)
+  Rendered jobs/new.html.erb within layouts/application (12.5ms)
+  Rendered users/_menu.html.erb (1.6ms)
+Completed 200 OK in 65ms (Views: 56.0ms | ActiveRecord: 2.7ms)
+
+

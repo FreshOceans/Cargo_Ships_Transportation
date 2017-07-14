@@ -59,7 +59,7 @@
             <% end %>
         <% end %>
 
-        <%= label :boat_id, "Boat", class: "data-label" %>: <%= form.select(:boat_id, options_for_select(boat_name_ids, 2), id: "boat", class: "data-value" )%><br />
+        <p>Boat:</p> <%= select_tag(:boat_id, options_for_select(boat_name_ids, 2), id: "boat", class: "data-value" )%><br />
 
         <input type="hidden" name="job[user_id]" value="<%= @user.id %>">
 
