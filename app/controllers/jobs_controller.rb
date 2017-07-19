@@ -1,6 +1,15 @@
 class JobsController < ApplicationController
   before_action :set_job, only: [:show, :edit, :update, :destroy]
 
+
+  # GET /comment_ujs
+  def comment_ujs
+    puts "\n******** comment_ujs ********"
+    respond_to do |format|
+        format.js {render :comment_ujs }
+    end
+  end
+
   # GET /jobs
   # GET /jobs.json
   def index

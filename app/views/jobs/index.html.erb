@@ -12,9 +12,6 @@
   </thead>
 
   <tbody>
-      <!-- <div class="job-route">
-          <%#= link_to 'New Job?', "/new_job/#{job.id}", remote: true %>
-      </div> -->
     <% @jobs.each do |job| %>
       <tr>
           <td><%= link_to job.name, user_job_path(@user, job.id) %> </td>

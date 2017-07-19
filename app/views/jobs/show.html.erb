@@ -11,10 +11,15 @@
     <!-- <p>Boat: <%#= @job.boat %></p> -->
 </div>
 
+<div class="comment_ujs">
+    <%= link_to 'Comment', "/comment_ujs", remote: true %>
+</div>
+
 <div id="comment_info">
     <% @comments.each do |comment| %>
         <p><%= @user.username %>: <%= comment.content %> </p>
     <% end %>
+    <!-- give id and class to  p tags -->
 
     <% puts "**** @user.inspect: #{@user.inspect} ****" %>
     <% puts "**** @comment.inspect: #{@comment.inspect} ****" %>
